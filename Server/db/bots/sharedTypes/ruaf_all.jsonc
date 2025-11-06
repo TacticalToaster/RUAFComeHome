@@ -1,0 +1,104 @@
+{
+    "firstName": [
+        "Pvt",
+        "Cpl"
+    ],
+    "lastName": [
+        "Тайпан",
+        "Секач",
+        "Ястреб",
+        "Мангуст",
+        "Ирбис",
+        "Орлан",
+        "Гепард",
+        "Носорог",
+        "Логгерхед",
+        "Мантис",
+        "Гриззли",
+        "Пума",
+        "Гриф",
+        "Барракуда",
+        "Сапсан",
+        "Питон",
+        "Лис",
+        "Кондор",
+        "Беркут",
+        "Дикобраз",
+        "Пчел",
+        "Волк",
+        "Кобра",
+        "Тарантул",
+        "Гюрза",
+        "Пантера",
+        "Ягуар",
+        "Тигр",
+        "Падальщик",
+        "Росомаха",
+        "Балу",
+        "Варан",
+        "Лев",
+        "Стервятник",
+        "Леопард",
+        "Красный",
+        "Скорпион",
+        "Барс",
+        "Гадюка",
+        "Зубр",
+        "Крачун",
+        "Акула",
+        "Могильник",
+        "Кречет",
+        "Калан",
+        "Шакал",
+        "Орел",
+        "Рысь",
+        "Каракурт",
+        "Вепрь",
+        "Пиранья",
+        "Медведь",
+        "Манул",
+        "Кайман"
+    ],
+    "difficulty": {
+        "all": {
+            "Shoot": {
+                "MAX_SUCCESS_GRENADE_LAUNCHER_SHOOT_ATTEMPTS": 2,
+                "MAX_TIME_SEEN_TO_SWITCH_TO_GRENADE_LAUNCHER": 30,
+                "SHOOT_PROBABILITY_GRENADE_LAUNCHER": 80
+            },
+            "Mind": {
+                "CHANCE_SHOOT_WHEN_WARN_PLAYER_100": 0,
+                "CHANCE_TO_STAY_WHEN_WARN_PLAYER_100": 80,
+                "DEFAULT_BEAR_BEHAVIOUR": "Warn",
+                "DEFAULT_SAVAGE_BEHAVIOUR": "Warn",
+                "DEFAULT_USEC_BEHAVIOUR": "AlwaysEnemies",
+                "REVENGE_BOT_TYPES": [
+                    848400,
+                    848401,
+                    848402,
+                    848403,
+                    848404,
+                    848405,
+                    "gifter"
+                ],
+                "WARN_BOT_TYPES": [
+                    "assault",
+                    "pmcBear"
+                ],
+                "ENEMY_BOT_TYPES": [
+                    "pmcUsec",
+                    "exUsec",
+                    "pmcBot"
+                ],
+                "FRIENDLY_BOT_TYPES": [
+                    848400,
+                    848401,
+                    848402,
+                    848403,
+                    848404,
+                    848405
+                ]
+            }
+        }
+    }
+}

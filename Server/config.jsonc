@@ -1,0 +1,182 @@
+{
+  // Debug settings, don't touch unless you know what you're doing
+  "debug": {
+    // Enable or disable additional debug logs
+    "logs": false,
+    // Force patrols to spawn in every raid (as if patrolChance was 100%)
+    "spawnAlways": false,
+    // Force patrols to always spawn at the start of raids
+    "spawnInstantlyAlways": false
+  },
+  // Settings for changing how patrols and their members are generated
+  "patrols": {
+    // Minimum size a patrol needs to be to have a chance for a second leader
+    "minSecondLeaderSize": 5,
+    // Chance (percentage) for a patrol to have a second leader if it meets the minimum size
+    "secondLeaderChance": 30,
+    // Every x person in a patrol there will be a specialist role (machinegunner, autorifleman, marksman, etc)
+    "specialistEveryPerson":  3
+  },
+  "checkpoints": {
+    // Minimum size a patrol needs to be to have a chance for a second leader
+    "minSecondLeaderSize": 4,
+    // Chance (percentage) for a patrol to have a second leader if it meets the minimum size
+    "secondLeaderChance": 35,
+    // Every x person in a patrol there will be a specialist role (machinegunner, autorifleman, marksman, etc)
+    "specialistEveryPerson": 3
+  },
+  // Location-specific settings. You can add more locations by copying one of the existing ones and changing the name to the map's internal name
+  "locations": {
+    "woods": {
+      // Location-specific patrol settings
+      "patrol": {
+        // Enable or disable patrols on this map
+        "enablePatrols": true,
+        // Chance (percentage) for a patrol to spawn in a raid
+        "patrolChance": 50,
+        // Maximum number of patrols that can spawn in a raid. Each patrol roll is independent, increasing the overall chance to encounter a patrol and allowing multiple patrols
+        "patrolAmount": 1,
+        // Minimum members in a patrol
+        "patrolMin": 3,
+        // Maximum members in a patrol
+        "patrolMax": 6,
+        // Bot Zones to spawn patrols in. Picks randomly, eliminating choices for subsequent patrols until all are used, then resets
+        "patrolZones": [ "ZoneHouse", "ZoneMiniHouse", "ZoneBrokenVill" ],
+        // Minimum time a patrol can spawn after raid start. Avoid setting this less than 120 to prevent issues with checkpoints
+        "patrolTimeMin": 300,
+        // Maximum time a patrol can spawn after raid start
+        "patrolTimeMax": 1680
+      },
+      // Location-specific checkpoint settings
+      "checkpoint": {
+        // Enable start-of-raid checkpoints on this map
+        "enableCheckpoints": true,
+        // Amount of checkpoints that can be in raid. Each checkpoint roll is independent, increasing the overall chance to encounter a checkpoint and allowing multiple checkpoints
+        "checkpointAmount": 2,
+        // Collection of the different checkpoints
+        "checkpointZones": [
+          {
+            // Bot zone for this checkpoint
+            "checkpointZone": "ZoneRoad",
+            // Chance (percentage) for this checkpoint to spawn if selected
+            "checkpointChance": 40,
+            // Minimum members in this checkpoint
+            "checkpointMin": 3,
+            // Maximum members in this checkpoint
+            "checkpointMax": 4,
+            // Radius around the coordinates that bots will find cover points within
+            "checkpointRadius": 20,
+            // Coordinates for this checkpoint
+            "x": -162.703,
+            "y": -0.982,
+            "z": 393.776
+          }
+        ]
+      }
+    },
+    "bigmap": {
+      "patrol": {
+        "enablePatrols": true,
+        "patrolChance": 50,
+        "patrolAmount": 2,
+        "patrolMin": 4,
+        "patrolMax": 7,
+        "patrolZones": [ "ZoneBlockPost", "ZoneCrossRoad", "ZoneTankSquare" ],
+        "patrolTimeMin": 300,
+        "patrolTimeMax": 1200
+      },
+      "checkpoint": {
+        "enableCheckpoints": true,
+        "checkpointAmount": 2,
+        "checkpointZones": [
+          {
+            "checkpointZone": "ZoneWade",
+            "checkpointChance": 50,
+            "checkpointMin": 3,
+            "checkpointMax": 5,
+            "checkpointRadius": 20,
+            "x": -15.731,
+            "y": -0.224,
+            "z": -118.653
+          },
+          {
+            "checkpointZone": "ZoneBlockPost",
+            "checkpointChance": 40,
+            "checkpointMin": 2,
+            "checkpointMax": 3,
+            "checkpointRadius": 20,
+            "x": 645.827,
+            "y": 0.242,
+            "z": 105.409
+          }
+        ]
+      }
+    },
+    "interchange": {
+      "patrol": {
+        "enablePatrols": true,
+        "patrolChance": 50,
+        "patrolAmount": 2,
+        "patrolMin": 4,
+        "patrolMax": 6,
+        "patrolZones": [ "ZoneRoad", "ZoneOLI", "ZoneIDEAPark" ],
+        "patrolTimeMin": 300,
+        "patrolTimeMax": 1600
+      },
+      "checkpoint": {
+        "enableCheckpoints": false,
+        "checkpointAmount": 1,
+        "checkpointZones": [
+          
+        ]
+      }
+    },
+    "shoreline": {
+      "patrol": {
+        "enablePatrols": true,
+        "patrolChance": 40,
+        "patrolAmount": 2,
+        "patrolMin": 4,
+        "patrolMax": 7,
+        "patrolZones": [ "ZoneGasStation", "ZoneRailWays", "ZoneBusStation" ],
+        "patrolTimeMin": 300,
+        "patrolTimeMax": 1600
+      },
+      "checkpoint": {
+        "enableCheckpoints": false,
+        "checkpointAmount": 1,
+        "checkpointZones": [
+          {
+            "checkpointZone": "ZoneRailWays",
+            "checkpointChance": 70,
+            "checkpointMin": 3,
+            "checkpointMax": 5,
+            "checkpointRadius": 10,
+            "x": -845.835,
+            "y": -59.117,
+            "z": 474.212
+          }
+        ]
+      }
+    },
+    "tarkovstreets": {
+      "patrol": {
+        "enablePatrols": true,
+        "patrolChance": 50,
+        "patrolAmount": 2,
+        "patrolMin": 4,
+        "patrolMax": 7,
+        "patrolZones": [ "ZoneFactory", "ZoneCard1", "ZoneSW01" ],
+        "patrolTimeMin": 300,
+        "patrolTimeMax": 1800
+      },
+      "checkpoint": {
+        "enableCheckpoints": false,
+        "checkpointAmount": 1,
+        "checkpointZones": [
+          
+        ]
+      }
+    }
+  }
+}

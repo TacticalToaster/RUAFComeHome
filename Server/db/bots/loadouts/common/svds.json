@@ -1,0 +1,40 @@
+{
+    "equipment": {},
+    "weapons": {},
+    "categories": {
+        "svds_barrels": {
+            "svds barrel": {
+                "id": "5c471cb32e221602b177afaa",
+                "children": {
+                    "svds_muzzlebrake": {
+                        "id": "5c471bfc2e221602b21d4e17",
+                        "slots": {
+                            "mod_sight_front": ["5c471ba12e221602b3137d76"]
+                        }
+                    }
+                },
+                "slots": {
+                    "mod_muzzle": [
+                        "svds_muzzlebrake"
+                    ],
+                    "mod_gas_block": [
+                        "5c471c842e221615214259b5"
+                    ]
+                }
+            }
+        },
+        "svds_upper_band": {
+            "svds upper band": {
+                "id": "5c471c2d2e22164bef5d077f",
+                "slots": {
+                    "mod_handguard": [
+                        "5c471c6c2e221602b66cd9ae"
+                    ],
+                    "mod_sight_rear": [
+                        "5c471b7e2e2216152006e46c"
+                    ]
+                }
+            }
+        }
+    }
+}

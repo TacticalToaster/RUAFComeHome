@@ -1,0 +1,129 @@
+{
+  "equipment": {
+    "Holster": {
+        "grach": {
+            "id": "576a581d2459771e7b1bc4f1",
+            "slots": {
+                "mod_pistol_grip": ["576a63cd2459771e796e0e11"],
+                "mod_magazine": ["576a5ed62459771e9c2096cb"]
+            }
+        }
+    },
+    "ArmorVest": {
+      "6b13 emr": {
+        "id": "5c0e53c886f7747fa54205c7",
+        "chance": 100,
+        "slots": {
+          "soft_armor_front": [ "654a8b0b0337d53f9102c2ae" ],
+          "soft_armor_back": [ "654a8976f414fcea4004d78b" ],
+          "soft_armor_left": [ "654a8b3df414fcea4004d78f" ],
+          "soft_armor_right": [ "654a8b80f414fcea4004d797" ],
+          "Collar": [ "654a8ae00337d53f9102c2aa" ],
+          "Groin": [ "654a8bc5f414fcea4004d79b" ],
+          "front_plate": [ "656f603f94b480b8a500c0d6" ],
+          "back_plate": [ "656efd66034e8e01c407f35c" ]
+        }
+      },
+      "6b23 emr": {
+        "id": "5c0e5bab86f77461f55ed1f3",
+        "chance": 100,
+        "slots": {
+          "Soft_armor_front": [ "6571b27a6d84a2b8b6007f92" ],
+          "Soft_armor_back": [ "6571baa74cb80d995d0a1490" ],
+          "Soft_armor_left": [ "6571baac6d84a2b8b6007fa3" ],
+          "soft_armor_right": [ "6571bab0f41985531a038091" ],
+          "Collar": [ "6571babb4076795e5e07383f" ],
+          "Groin": [ "6571bac34076795e5e073843" ],
+          "Groin_back": [ "6571babf4cb80d995d0a1494" ],
+          "Front_plate": [ "654a4dea7c17dec2f50cc86a" ],
+          "Back_plate": [ "657b22485f444d6dff0c6c2f" ]
+        }
+      },
+      "6b43": {
+        "id": "545cdb794bdc2d3a198b456a",
+        "slots": {
+          "Soft_armor_front": [ "6575ce3716c2762fba0057fd" ],
+          "Soft_armor_back": [ "6575ce45dc9932aed601c616" ],
+          "Soft_armor_left": [ "6575ce5016c2762fba005802" ],
+          "soft_armor_right": [ "6575ce5befc786cd9101a671" ],
+          "Collar": [ "6575ce6f16c2762fba005806" ],
+          "Groin": [ "6575ce8bdc9932aed601c61e" ],
+          "Shoulder_l": [ "6575ce9db15fef3dd4051628" ],
+          "Shoulder_r": [ "6575cea8b15fef3dd405162c" ],
+          "Front_plate": [ "64afc71497cf3a403c01ff38" ],
+          "Back_plate": [ "64afc71497cf3a403c01ff38" ],
+          "Left_side_plate": [ "64afd81707e2cf40e903a316" ],
+          "Right_side_plate": [ "64afd81707e2cf40e903a316" ]
+        }
+      }
+    },
+    "TacticalVest": {
+      "alpha vest": {
+        "id": "592c2d1a86f7746dbe2af32a",
+        "chance": 50
+      },
+      "tv-109": {
+        "id": "59e7643b86f7742cbf2c109a",
+        "chance": 100
+      },
+      "6sh112": {
+        "id": "5929a2a086f7744f4b234d43",
+        "chance": 100
+      }
+    },
+    "Headwear": {
+      "6b47 emr": {
+        "chance": 100,
+        "id": "5aa7cfc0e5b5b00015693143",
+        "slots": {
+          "Helmet_top": [ "657baaf0b7e9ca9a02045c02" ],
+          "Helmet_back": [ "657bab6ec6f689d3a205b85f" ],
+          "Helmet_ears": [ "657babc6f58ba5a6250107a2" ]
+        }
+      },
+      "6b47": {
+        "chance": 45,
+        "id": "5a7c4850e899ef00150be885",
+        "slots": {
+          "Helmet_top": [ "657baaf0b7e9ca9a02045c02" ],
+          "Helmet_back": [ "657bab6ec6f689d3a205b85f" ],
+          "Helmet_ears": [ "657babc6f58ba5a6250107a2" ]
+        }
+      },
+      "uxpro": {
+        "id": "5aa2ba46e5b5b000137b758d",
+        "chance": 40
+      },
+      "beanie": {
+        "id": "572b7fa124597762b472f9d2",
+        "chance": 40
+      }
+    },
+    "Eyewear": {
+      "tactical glasses": {
+        "id": "557ff21e4bdc2d89578b4586",
+        "chance": 30
+      },
+      "dundukk orange": {
+        "id": "67af41dd1eb308667602db4a",
+        "chance": 30
+      }
+    },
+    "FaceCover": {
+      "balaclava": {
+        "id": "572b7f1624597762ae139822",
+        "chance": 30
+      },
+      "cold fear": {
+        "id": "5ab8f39486f7745cd93a1cca",
+        "chance": 30
+      }
+    }
+  },
+  "weapons": {
+    
+  },
+  "categories": {
+
+  }
+}

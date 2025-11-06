@@ -1,0 +1,38 @@
+{
+  "equipment": {
+    "FirstPrimaryWeapon": {
+      "rpk16": {
+        "id": "5beed0f50db834001c062b12",
+        "chance": 50,
+        "slots": {
+          "mod_barrel": [ "rpk16_long_barrel" ],
+          "mod_pistol_grip": [ "5beec8ea0db834001a6f9dbf" ],
+          "mod_reciever": [ "rpk16_dustcover" ],
+          "mod_magazine": [ "ak74_mags_auto" ],
+          "mod_stock_001": [ 
+            "ak12_stocks_special",
+            "6761779c48fa5c377e06fc3f"
+          ],
+          "mod_handguard": [ "rpk16_handguard" ]
+        }
+      }
+    },
+    "TacticalVest": {
+        "alpha vest": {
+            "chance": 50
+        },
+        "tv-109": {
+            "chance": 0
+        },
+        "6sh112": {
+            "chance": 0
+        }
+    }
+  },
+  "weapons": {
+    
+  },
+  "categories": {
+
+  }
+}

@@ -1,0 +1,125 @@
+{
+    "equipment": {
+        "FirstPrimaryWeapon": {
+            "ak74m": {
+                "id": "5ac4cd105acfc40016339859",
+                "chance": 50,
+                "slots": {
+                    "mod_gas_block": [
+                        "ak74m_gas_block"
+                    ],
+                    "mod_muzzle": [
+                        "5ac7655e5acfc40016339a19"
+                    ],
+                    "mod_pistol_grip": [
+                        "5649ade84bdc2d1b2b8b4587",
+                        "5beec8ea0db834001a6f9dbf"
+                    ],
+                    "mod_reciever": [
+                        "ak74m_dustcovers"
+                    ],
+                    "mod_magazine": [
+                        "ak74_mags_standard"
+                    ],
+                    "mod_stock": [
+                        "ak74m_stocks_special"
+                    ],
+                    "mod_mount_000": [
+                        "dovetail_mid",
+                        "dovetail_optics"
+                    ],
+                    "mod_sight_rear": [
+                        "5ac72e475acfc400180ae6fe"
+                    ],
+                    "mod_launcher": [
+                        "62e7e7bbe6da9612f743f1e0"
+                    ]
+                }
+            },
+            "ak12": {
+                "id": "6499849fc93611967b034949",
+                "chance": 65,
+                "slots": {
+                    "mod_gas_block": [
+                        "649ec107961514b22506b10c"
+                    ],
+                    "mod_handguard": [
+                        "ak12_handguards"
+                    ],
+                    "mod_muzzle": [
+                        "649ec2af961514b22506b10f"
+                    ],
+                    "mod_pistol_grip": [
+                        "5beec8ea0db834001a6f9dbf"
+                    ],
+                    "mod_reciever": [
+                        "ak12_dustcovers"
+                    ],
+                    "mod_magazine": [
+                        "ak74_mags_standard"
+                    ],
+                    "mod_stock_001": [
+                        "ak12_stocks_special",
+                        "6761779c48fa5c377e06fc3f"
+                    ],
+                    "mod_launcher": [
+                        "62e7e7bbe6da9612f743f1e0"
+                    ]
+                }
+            }
+        },
+        "Holster": {
+            "grach": {
+                "chance": 100
+            }
+        },
+        "ArmorVest": {
+            "6b43": {
+                "chance": 200
+            }
+        },
+        "TacticalVest": {
+            "alpha vest": {
+                "chance": 50
+            },
+            "tv-109": {
+                "chance": 0
+            },
+            "6sh112": {
+                "chance": 0
+            }
+        },
+        "Headwear": {
+            "6b47 emr": {
+                "chance": 100
+            },
+            "6b47": {
+                "chance": 25
+            },
+            "uxpro": {
+                "chance": 0
+            },
+            "beanie": {
+                "chance": 0
+            }
+        },
+        "Eyewear": {
+            "tactical glasses": {
+                "chance": 30
+            },
+            "dundukk orange": {
+                "chance": 30
+            }
+        },
+        "FaceCover": {
+            "balaclava": {
+                "chance": 30
+            },
+            "cold fear": {
+                "chance": 30
+            }
+        }
+    },
+    "weapons": {},
+    "categories": {}
+}
