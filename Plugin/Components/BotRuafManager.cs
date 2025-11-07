@@ -45,7 +45,7 @@ namespace RUAFComeHome.Components
             if (!WildSpawnTypeExtensions.IsRUAF(botOwner.Profile.Info.Settings.Role))
                 return;
 
-            CheckPlayerLoyalty();
+            //CheckPlayerLoyalty();
         }
 
         public void CheckPlayerLoyalty()
