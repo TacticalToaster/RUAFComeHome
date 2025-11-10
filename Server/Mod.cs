@@ -101,12 +101,14 @@ public class RUAFComeHome(
         // Add enemies based on factions
         factionService.AddEnemyByFaction(typeList, "savage");
         factionService.AddEnemyByFaction(typeList, "rogues");
+        factionService.AddEnemyByFaction(typeList, "usec");
         factionService.AddEnemyByFaction(typeList, "cultists");
         factionService.AddEnemyByFaction(typeList, "infected");
 
         // Add RUAF as enemies to those same factions
         factionService.AddEnemyByFaction("savage", "ruaf");
         factionService.AddEnemyByFaction("rogues", "ruaf");
+        factionService.AddEnemyByFaction("usec", "ruaf");
         factionService.AddEnemyByFaction("cultists", "ruaf");
         factionService.AddEnemyByFaction("infected", "ruaf");
 
