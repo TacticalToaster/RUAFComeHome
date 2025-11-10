@@ -22,7 +22,8 @@ namespace RUAFComeHome.Prepatch
                 //"PtrlBirdEye",
 				"PmcBear",
                 "PmcUsec",
-                "ExURequest"
+                "ExURequest",
+                "StationaryWS"
             };
 
             int ruafBrainInt = 24;//9;
