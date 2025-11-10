@@ -13,7 +13,6 @@ namespace RUAFComeHome
 
         public static bool IsRUAF(WildSpawnType type)
         {
-            Plugin.LogSource.LogWarning($"Is it ruaf? {RUAFEnums.Contains((int)type)}");
             return RUAFEnums.Contains((int)type);
         }
     }
