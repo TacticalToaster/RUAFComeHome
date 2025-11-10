@@ -1,7 +1,10 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using RUAFComeHome.Components;
 using RUAFComeHome.Patches;
+using System;
+using System.Collections.Generic;
 
 namespace RUAFComeHome
 {
@@ -11,6 +14,9 @@ namespace RUAFComeHome
     public class Plugin : BaseUnityPlugin
     {
         public static ManualLogSource LogSource;
+
+        public ConfigEntry<bool> SpawnHunt;
+        public ConfigEntry<bool> SpawnExUsecHunt;
 
         // BaseUnityPlugin inherits MonoBehaviour, so you can use base unity functions like Awake() and Update()
         private void Awake()
@@ -23,6 +29,38 @@ namespace RUAFComeHome
             new BotsControllerInitPatch().Enable();
 
             this.GetOrAddComponent<RuafCheckpointManager>();
+            var huntManger = this.GetOrAddComponent<HuntManager>();
+
+            InitConfig();
+        }
+
+        private void InitConfig()
+        {
+            SpawnHunt = Config.Bind(
+                "DEBUG",
+                "Spawn RUAF hunt",
+                false,
+                "Spawn RUAF hunt"
+                );
+            SpawnExUsecHunt = Config.Bind(
+                "DEBUG",
+                "Spawn Rogue hunt",
+                false,
+                "Spawn Rogue hunt"
+                );
+
+            SpawnHunt.SettingChanged += SpawnRuafHunt;
+            SpawnExUsecHunt.SettingChanged += SpawnRogueHunt;
+        }
+
+        private void SpawnRuafHunt(object sender, EventArgs e)
+        {
+            MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("ruafHunt");
+        }
+
+        private void SpawnRogueHunt(object sender, EventArgs e)
+        {
+            MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("exUsecHunt");
         }
     }
 }

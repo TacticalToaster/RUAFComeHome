@@ -72,6 +72,23 @@
             "z": 393.776
           }
         ]
+      },
+      // Location-specific hunt settings
+      "hunt": {
+        // Enable or disable hunts on this map
+        "enableHunts": true,
+        // List of hunts for different factions
+        "hunts": {
+          // Specific hunts (only ruaf and exUsec are supported)
+          "exUsec": {
+            // Zones the hunt can spawn in
+            "huntZones": "ZoneScavBase2,ZoneBigRocks",
+            // Minimum members in the hunt
+            "huntMin": 3,
+            // Maximum members in the hunt
+            "huntMax": 4
+          }
+        }
       }
     },
     "bigmap": {
@@ -110,6 +127,16 @@
             "z": 105.409
           }
         ]
+      },
+      "hunt": {
+        "enableHunts": true,
+        "hunts": {
+          "exUsec": {
+            "huntZones": "ZoneOldAZS,ZoneFactorySide",
+            "huntMin": 3,
+            "huntMax": 4
+          }
+        }
       }
     },
     "interchange": {
@@ -127,8 +154,18 @@
         "enableCheckpoints": false,
         "checkpointAmount": 1,
         "checkpointZones": [
-          
+
         ]
+      },
+      "hunt": {
+        "enableHunts": true,
+        "hunts": {
+          "exUsec": {
+            "huntZones": "ZoneTrucks,ZonePowerStation",
+            "huntMin": 3,
+            "huntMax": 4
+          }
+        }
       }
     },
     "shoreline": {
@@ -157,6 +194,16 @@
             "z": 474.212
           }
         ]
+      },
+      "hunt": {
+        "enableHunts": true,
+        "hunts": {
+          "exUsec": {
+            "huntZones": "ZoneMeteoStation,ZonePowerStation",
+            "huntMin": 3,
+            "huntMax": 4
+          }
+        }
       }
     },
     "tarkovstreets": {
@@ -174,8 +221,47 @@
         "enableCheckpoints": false,
         "checkpointAmount": 1,
         "checkpointZones": [
-          
+
         ]
+      },
+      "hunt": {
+        "enableHunts": true,
+        "hunts": {
+          "exUsec": {
+            "huntZones": "ZoneColumn,ZoneHotel_1",
+            "huntMin": 3,
+            "huntMax": 4
+          }
+        }
+      }
+    },
+    "lighthouse": {
+      "patrol": {
+        "enablePatrols": false,
+        "patrolChance": 50,
+        "patrolAmount": 2,
+        "patrolMin": 4,
+        "patrolMax": 7,
+        "patrolZones": [ "ZoneFactory", "ZoneCard1", "ZoneSW01" ],
+        "patrolTimeMin": 300,
+        "patrolTimeMax": 1800
+      },
+      "checkpoint": {
+        "enableCheckpoints": false,
+        "checkpointAmount": 1,
+        "checkpointZones": [
+
+        ]
+      },
+      "hunt": {
+        "enableHunts": true,
+        "hunts": {
+          "ruaf": {
+            "huntZones": "Zone_DestroyedHouse",
+            "huntMin": 4,
+            "huntMax": 6
+          }
+        }
       }
     }
   }

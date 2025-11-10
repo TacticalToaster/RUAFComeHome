@@ -1,11 +1,9 @@
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Eft.Common;
-using SPTarkov.Server.Core.Models.Utils;
+using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Json;
-using SPTarkov.Server.Core.Utils.Logger;
-using System;
 
 namespace RUAFComeHomeServer.Controllers;
 
@@ -39,6 +37,7 @@ public class RUAFSpawnController(
                 var mapConfig = mainConfig.locations[map];
                 var patrolConfig = mapConfig.patrol;
                 var checkpointConfig = mapConfig.checkpoint;
+                var huntConfig = mapConfig.hunt;
                 var spawns = tables.Locations.GetDictionary()[map].Base.BossLocationSpawn;
 
                 // Remove existing RUAF spawns
@@ -52,6 +51,11 @@ public class RUAFSpawnController(
                 if (checkpointConfig.enableCheckpoints)
                 {
                     AdjustCheckpointSpawnsForMap(map, mapConfig, mainConfig, spawns);
+                }
+
+                if (huntConfig.enableHunt)
+                {
+                    AdjustHuntSpawnsForMap(map, mapConfig, mainConfig, spawns);
                 }
             }
         }
@@ -130,6 +134,81 @@ public class RUAFSpawnController(
 
             logger.Info($"Added ({checkpointZoneConfig.checkpointChance}% chance) RUAF checkpoint of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
         }
+    }
+
+    private void AdjustHuntSpawnsForMap(string map, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        if (mapConfig.hunt.hunts.ContainsKey("ruaf"))
+        {
+            spawns.RemoveAll(x => x.TriggerId == "ruafHunt");
+            AddRuafHuntToMap(map, mapConfig, mainConfig, spawns);
+        }
+
+        if (mapConfig.hunt.hunts.ContainsKey("exUsec"))
+        {
+            spawns.RemoveAll(x => x.TriggerId == "exUsecHunt");
+            AddExUsecHuntToMap(map, mapConfig, mainConfig, spawns);
+        }
+    }
+
+    private void AddRuafHuntToMap(string map, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        var huntConfig = mapConfig.hunt.hunts["ruaf"];
+
+        logger.Info($"Enabling RUAF hunt for {map}.");
+
+        var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
+        var patrol = GeneratePatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : 100, false);
+
+        patrol.Time = -1;
+
+        patrol.BossZone = huntConfig.huntZones;
+        patrol.TriggerName = "botEvent";
+        patrol.TriggerId = "ruafHunt";
+        patrol.ForceSpawn = true;
+
+        spawns.Add(patrol);
+
+        logger.Info($"Added RUAF Hunt of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+    }
+
+    private void AddExUsecHuntToMap(string map, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        var huntConfig = mapConfig.hunt.hunts["exUsec"];
+
+        logger.Info($"Enabling EXUSEC hunt for {map}.");
+
+        var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
+        var patrol = new BossLocationSpawn
+        {
+            BossChance = 100,
+            BossDifficulty = "normal",
+            BossEscortAmount = patrolSize.ToString(),
+            BossEscortDifficulty = "normal",
+            BossEscortType = "exUsec",
+            BossName = "exUsec",
+            IsBossPlayer = false,
+            BossZone = string.Empty,
+            ForceSpawn = false,
+            IgnoreMaxBots = true,
+            IsRandomTimeSpawn = false,
+            SpawnMode = new[] { "regular", "pve" },
+            Supports = new List<BossSupport>(),
+            Time = -1,
+            TriggerId = string.Empty,
+            TriggerName = string.Empty
+        };
+
+        patrol.Time = -1;
+
+        patrol.BossZone = huntConfig.huntZones;
+        patrol.TriggerName = "botEvent";
+        patrol.TriggerId = "exUsecHunt";
+        patrol.ForceSpawn = true;
+
+        spawns.Add(patrol);
+
+        logger.Info($"Added EXUSEC Hunt of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
     }
 
     private BossLocationSpawn GeneratePatrol(int patrolSize, float chance, bool isPatrol = true)

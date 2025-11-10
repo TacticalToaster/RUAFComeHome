@@ -54,8 +54,22 @@ public class ZoneCheckpointConfig
     public float z { get; set; }
 }
 
+public class MapHuntConfig
+{
+    public bool enableHunt { get; set; }
+    public Dictionary<string, FactionHuntConfig> hunts { get; set; }
+}
+
+public class FactionHuntConfig
+{
+    public int huntMin { get; set; }
+    public int huntMax { get; set; }
+    public string huntZones { get; set; }
+}
+
 public class MapConfig
 {
     public MapPatrolConfig patrol { get; set; }
     public MapCheckpointConfig checkpoint { get; set; }
+    public MapHuntConfig hunt { get; set; }
 }

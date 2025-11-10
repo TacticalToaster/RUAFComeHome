@@ -20,8 +20,9 @@ namespace RUAFComeHome.Patches
         [PatchPostfix]
         protected static void PatchPostfix(BotsController __instance)
         {
-            Plugin.LogSource.LogInfo("BotsController initialized, initializing RuafCheckpointManager...");
+            Plugin.LogSource.LogInfo("BotsController initialized, initializing Managers...");
             MonoBehaviourSingleton<RuafCheckpointManager>.Instance.InitRaid();
+            MonoBehaviourSingleton<HuntManager>.Instance.InitRaid();
         }
     }
 }
