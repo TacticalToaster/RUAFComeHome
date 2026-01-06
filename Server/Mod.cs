@@ -107,6 +107,18 @@ public class RUAFComeHome(
             // Replace the appearance settings of the bots so they use couturier clothes
             await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_couturier", typeList);
         }
+        
+        if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.wtt.contentbackport"))
+        {
+            // Replace the appearance settings of the bots so they use backport clothes and voices
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_backport", typeList);
+
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_backport_sgt",
+                new List<string>() { "ruafRiflemanSenior" });
+            
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_backport_ballistic",
+                new List<string>() { "ruafMachinegunner" });
+        }
 
         customBotTypeService.AddCustomWildSpawnTypeNames(typeDictionary);
 
@@ -129,6 +141,11 @@ public class RUAFComeHome(
         if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.untargh.tacticaltoaster"))
         {
             factionService.AddWarnByFaction(typeList, "untar");
+        }
+        
+        if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.blackdiv.tacticaltoaster"))
+        {
+            factionService.AddEnemyByFaction(typeList, "blackdiv");
         }
 
         await commonLib.CustomQuestService.CreateCustomQuests(assembly);
