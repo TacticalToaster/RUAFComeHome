@@ -1,0 +1,266 @@
+{
+  "695c99f4138ce4c3ccb622ef": {
+    "QuestName": "Small Sabotage",
+    "_id": "695c99f4138ce4c3ccb622ef",
+    "traderId": "peacekeeper",
+    "type": "Elimination",
+    "location": "5704e3c2d2720bac5b8b4567",
+    "image": "/files/quest/icon/ruaf1.png",
+    "acceptanceAndFinishingSource": "eft",
+    "arenaLocations": [],
+    "instantComplete": false,
+    "isKey": false,
+    "secretQuest": false,
+    "gameModes": [],
+    "progressSource": "eft",
+    "rankingModes": [],
+    "side": "Pmc",
+    "sideExclusive": "Pmc",
+    "description": "695c99f4138ce4c3ccb622ef description",
+    "startedMessageText": "695c99f4138ce4c3ccb622ef startedMessageText",
+    "successMessageText": "695c99f4138ce4c3ccb622ef successMessageText",
+    "failMessageText": "695c99f4138ce4c3ccb622ef failMessageText",
+    "acceptPlayerMessage": "695c99f4138ce4c3ccb622ef acceptPlayerMessage",
+    "declinePlayerMessage": "695c99f4138ce4c3ccb622ef declinePlayerMessage",
+    "completePlayerMessage": "695c99f4138ce4c3ccb622ef completePlayerMessage",
+    "changeQuestMessageText": "695c99f4138ce4c3ccb622ef changeQuestMessageText",
+    "name": "695c99f4138ce4c3ccb622ef name",
+    "note": "695c99f4138ce4c3ccb622ef note",
+    "restartable": false,
+    "canShowNotificationsInGame": true,
+    "status": 0,
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "completeInSeconds": 0,
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "bodyPart": [],
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "daytime": {
+                  "from": 0,
+                  "to": 0
+                },
+                "distance": {
+                  "compareMethod": ">=",
+                  "value": 0
+                },
+                "dynamicLocale": false,
+                "enemyEquipmentExclusive": [],
+                "enemyEquipmentInclusive": [],
+                "enemyHealthEffects": [],
+                "id": "695c99f4aecc012992fcb4e3",
+                "resetOnSessionEnd": false,
+                "savageRole": [
+                  "bossKilla"
+                ],
+                "target": "Savage",
+                "value": 8,
+                "weapon": [],
+                "weaponCaliber": [],
+                "weaponModsExclusive": [],
+                "weaponModsInclusive": []
+              },
+              {
+                "conditionType": "Location",
+                "dynamicLocale": false,
+                "id": "695c99f441f52b7857d1adec",
+                "target": [
+                  "Woods"
+                ]
+              }
+            ],
+            "id": "695c99f44b26070a2bf76c37"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "695c97ed606bf84afddf732d",
+          "index": 0,
+          "isNecessary": false,
+          "isResetOnConditionFailed": false,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": 8,
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "695c99f48c4186aa1b8d7bcc",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            3
+          ],
+          "target": "695c96ccf3389a5ab3f594e6",
+          "visibilityConditions": []
+        },
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "695c99f4095aa716c63da1a6",
+          "index": 1,
+          "parentId": "",
+          "value": 20,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "availableInGameEditions": [],
+          "id": "695c99f43577051d56b2f71c",
+          "index": 0,
+          "target": "prapor",
+          "type": "TraderStanding",
+          "value": "-0.03",
+          "unknown": false
+        }
+      ]
+    }
+  },
+  "695c9bb87f63551bef72cecb": {
+    "QuestName": "Less Small Sabotage",
+    "_id": "695c9bb87f63551bef72cecb",
+    "traderId": "peacekeeper",
+    "type": "Elimination",
+    "location": "any",
+    "image": "/files/quest/icon/ruaf2.png",
+    "acceptanceAndFinishingSource": "eft",
+    "arenaLocations": [],
+    "instantComplete": false,
+    "isKey": false,
+    "secretQuest": false,
+    "gameModes": [],
+    "progressSource": "eft",
+    "rankingModes": [],
+    "side": "Pmc",
+    "sideExclusive": "Pmc",
+    "description": "695c9bb87f63551bef72cecb description",
+    "startedMessageText": "695c9bb87f63551bef72cecb startedMessageText",
+    "successMessageText": "695c9bb87f63551bef72cecb successMessageText",
+    "failMessageText": "695c9bb87f63551bef72cecb failMessageText",
+    "acceptPlayerMessage": "695c9bb87f63551bef72cecb acceptPlayerMessage",
+    "declinePlayerMessage": "695c9bb87f63551bef72cecb declinePlayerMessage",
+    "completePlayerMessage": "695c9bb87f63551bef72cecb completePlayerMessage",
+    "changeQuestMessageText": "695c9bb87f63551bef72cecb changeQuestMessageText",
+    "name": "695c9bb87f63551bef72cecb name",
+    "note": "695c9bb87f63551bef72cecb note",
+    "restartable": false,
+    "canShowNotificationsInGame": true,
+    "status": 0,
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "completeInSeconds": 0,
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "bodyPart": [],
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "daytime": {
+                  "from": 0,
+                  "to": 0
+                },
+                "distance": {
+                  "compareMethod": ">=",
+                  "value": 0
+                },
+                "dynamicLocale": false,
+                "enemyEquipmentExclusive": [],
+                "enemyEquipmentInclusive": [],
+                "enemyHealthEffects": [],
+                "id": "695c9bb8b23e525dce7a32dd",
+                "resetOnSessionEnd": false,
+                "savageRole": [
+                  "bossTagilla"
+                ],
+                "target": "Savage",
+                "value": 3,
+                "weapon": [],
+                "weaponCaliber": [],
+                "weaponModsExclusive": [],
+                "weaponModsInclusive": []
+              }
+            ],
+            "id": "695c9bb87a103f7b5e4b2031"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "695c9bbdfeb3a69f9f09bf60",
+          "index": 0,
+          "isNecessary": false,
+          "isResetOnConditionFailed": false,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": 3,
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "695c9bb8c188729c9f6f1302",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            3
+          ],
+          "target": "695c99f4138ce4c3ccb622ef",
+          "visibilityConditions": []
+        },
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "695c9bb86a459d4f932c59af",
+          "index": 1,
+          "parentId": "",
+          "value": 25,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "availableInGameEditions": [],
+          "id": "695c9bb85e1b373df4ea670e",
+          "index": 0,
+          "target": "prapor",
+          "type": "TraderStanding",
+          "value": "-0.05",
+          "unknown": false
+        }
+      ]
+    }
+  }
+}

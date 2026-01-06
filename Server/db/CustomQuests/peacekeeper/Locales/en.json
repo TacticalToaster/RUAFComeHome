@@ -1,0 +1,12 @@
+{
+  "695c99f4138ce4c3ccb622ef name": "Small Sabotage",
+  "695c99f4138ce4c3ccb622ef description": "Merc, is that you? Good, I got a task for you. Our local \"compatriots\" have been overstepping their boundaries recently. The UN mission is supposed to be the primary peacekeeping force according to the resolution that was drafted in relation to the conflict here, but it seems the Russians are looking to expand their own operations. They so happen to be encroaching on our activities, and that's making my foreign partners a bit nervous. So, I want you to take care of that. Give them a nice scare, wiping out one of their sections should do the trick. I'll leave you a package once you're done that should make up for any unwanted attention you receive.",
+  "695c99f4138ce4c3ccb622ef acceptPlayerMessage": "Oh, and I can't risk my own peacekeepers for this mission. Might cause an international conflict if we got involved. You're plenty capable on your own though.",
+  "695c99f4138ce4c3ccb622ef completePlayerMessage": "Seems like that did the trick. My guys haven't ran into any Russian patrols since I sent you out, so here's your reward.",
+  "695c97ed606bf84afddf732d": "Kill 8 RUAF soldiers on Woods.",
+  "695c9bb87f63551bef72cecb name": "Less Small Sabotage",
+  "695c9bb87f63551bef72cecb description": "Guess that wasn't enough, now there's russkie patrols all over the territory. We're going to have to hit them where it hurts. I need you to target their leadership, make a point out it this time. Maybe Prapor will personally put a stop to this if he's loosing his trusted men.",
+  "695c9bb87f63551bef72cecb acceptPlayerMessage": "Remember, make a point. Target the experienced ones.",
+  "695c9bb87f63551bef72cecb completePlayerMessage": "You're back? They're making a mess of their frequencies, good job. What? Of course we have their radio encryption keys. You think I'm running this operation blind?",
+  "695c9bbdfeb3a69f9f09bf60": "Kill 3 RUAF senior riflemen."
+}
