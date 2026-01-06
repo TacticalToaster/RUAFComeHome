@@ -19,7 +19,10 @@ namespace RUAFComeHome.Behavior.Actions
 
         public SearchForTargetAction(BotOwner botOwner) : base(botOwner)
         {
-            baseAction = BotActionNodesClass.CreateNode(BotLogicDecision.search, botOwner);
+            if (botOwner.Boss.IamBoss)
+                baseAction = BotActionNodesClass.CreateNode(BotLogicDecision.simplePatrol, botOwner);
+            else
+                baseAction = BotActionNodesClass.CreateNode(BotLogicDecision.followerPatrol, botOwner);
         }
 
         public override void Start()

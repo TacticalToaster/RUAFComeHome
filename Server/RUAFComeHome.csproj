@@ -19,6 +19,10 @@
     <None Remove="db\bots\sharedTypes\ruafRiflemanSenior.jsonc" />
     <None Remove="db\bots\sharedTypes\ruaf_all.jsonc" />
     <None Remove="db\bots\sharedTypes\ruaf_couturier.jsonc" />
+    <None Remove="db\CustomQuests\prapor\Images\ruaf1.png" />
+    <None Remove="db\CustomQuests\prapor\Images\ruaf2.png" />
+    <None Remove="db\CustomQuests\prapor\Images\ruaf3.png" />
+    <None Remove="db\CustomQuests\prapor\Images\ruaf4.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +39,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="db\bots\sharedTypes\ruaf_couturier.jsonc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\CustomQuests\prapor\Images\ruaf1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\CustomQuests\prapor\Images\ruaf2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\CustomQuests\prapor\Images\ruaf3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\CustomQuests\prapor\Images\ruaf4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

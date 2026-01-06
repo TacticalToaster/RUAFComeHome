@@ -1,0 +1,217 @@
+{
+  "6913e6f7785c222b2c0eb094": {
+    "QuestName": "Special Support",
+    "_id": "6913e6f7785c222b2c0eb094",
+    "traderId": "54cb50c76803fa8b248b4571",
+    "type": "Elimination",
+    "location": "5704e4dad2720bb55b8b4567",
+    "image": "/files/quest/icon/ruaf1.png",
+    "acceptanceAndFinishingSource": "eft",
+    "arenaLocations": [],
+    "instantComplete": false,
+    "isKey": false,
+    "secretQuest": false,
+    "gameModes": [],
+    "progressSource": "eft",
+    "rankingModes": [],
+    "side": "Pmc",
+    "sideExclusive": "Bear",
+    "description": "6913e6f7785c222b2c0eb094 description",
+    "startedMessageText": "6913e6f7785c222b2c0eb094 startedMessageText",
+    "successMessageText": "6913e6f7785c222b2c0eb094 successMessageText",
+    "failMessageText": "6913e6f7785c222b2c0eb094 failMessageText",
+    "acceptPlayerMessage": "6913e6f7785c222b2c0eb094 acceptPlayerMessage",
+    "declinePlayerMessage": "6913e6f7785c222b2c0eb094 declinePlayerMessage",
+    "completePlayerMessage": "6913e6f7785c222b2c0eb094 completePlayerMessage",
+    "changeQuestMessageText": "6913e6f7785c222b2c0eb094 changeQuestMessageText",
+    "name": "6913e6f7785c222b2c0eb094 name",
+    "note": "6913e6f7785c222b2c0eb094 note",
+    "restartable": false,
+    "canShowNotificationsInGame": true,
+    "status": 0,
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "completeInSeconds": 0,
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "bodyPart": [],
+                "compareMethod": ">=",
+                "conditionType": "Kills",
+                "daytime": {
+                  "from": 0,
+                  "to": 24
+                },
+                "distance": {
+                  "compareMethod": ">=",
+                  "value": 0
+                },
+                "dynamicLocale": false,
+                "enemyEquipmentExclusive": [],
+                "enemyEquipmentInclusive": [],
+                "enemyHealthEffects": [],
+                "id": "6913e6f784c7e8faeb778b47",
+                "resetOnSessionEnd": false,
+                "savageRole": [
+                  "bossKnight",
+                  "followerBigPipe",
+                  "followerBirdEye",
+                  "exUsec"
+                ],
+                "target": "Savage",
+                "value": 5,
+                "weapon": [],
+                "weaponCaliber": [
+                  "all"
+                ],
+                "weaponModsExclusive": [],
+                "weaponModsInclusive": []
+              },
+              {
+                "conditionType": "Location",
+                "dynamicLocale": false,
+                "id": "6913e6f777d0e4cbab9cbb91",
+                "target": [
+                  "Lighthouse"
+                ]
+              }
+            ],
+            "id": "6913e6f795219b13d46ce01f"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6913de94fbd4a50c1b530739",
+          "index": 0,
+          "isNecessary": false,
+          "isResetOnConditionFailed": false,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Elimination",
+          "value": 5,
+          "visibilityConditions": []
+        },
+        {
+          "completeInSeconds": 0,
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "conditionType": "ExitStatus",
+                "dynamicLocale": false,
+                "id": "6913e6f7d6becc69e3ed6eae",
+                "status": [
+                  "Survived"
+                ]
+              },
+              {
+                "conditionType": "Location",
+                "dynamicLocale": false,
+                "id": "6913e6f71203a3f754790c96",
+                "target": [
+                  "Lighthouse"
+                ]
+              }
+            ],
+            "id": "6913e6f7434d86b53ec81cbe"
+          },
+          "doNotResetIfCounterCompleted": false,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6913def842f492ef174c6e60",
+          "index": 1,
+          "isNecessary": false,
+          "isResetOnConditionFailed": false,
+          "oneSessionOnly": false,
+          "parentId": "",
+          "type": "Completion",
+          "value": 1,
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6913e6f71c46bd2b6363dcf9",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "626bd75c71bd851e971b82a5",
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": [
+        {
+          "completeInSeconds": 0,
+          "conditionType": "CounterCreator",
+          "counter": {
+            "conditions": [
+              {
+                "conditionType": "Location",
+                "dynamicLocale": false,
+                "id": "6913e6f71dbe104fdeca93ae",
+                "target": [
+                  "Lighthouse"
+                ]
+              },
+              {
+                "conditionType": "ExitStatus",
+                "dynamicLocale": false,
+                "id": "6913e6f746b90776a5c31c0b",
+                "status": [
+                  "Killed",
+                  "Left",
+                  "MissingInAction",
+                  "Survived",
+                  "Runner"
+                ]
+              }
+            ],
+            "id": "6913e6f7fb625cdaeffd6501"
+          },
+          "doNotResetIfCounterCompleted": true,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6913e6f715ccde50ae6e10c9",
+          "index": 0,
+          "oneSessionOnly": true,
+          "parentId": "",
+          "type": "Exploration",
+          "value": 1,
+          "visibilityConditions": []
+        }
+      ]
+    },
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "availableInGameEditions": [],
+          "id": "6913e6f7319a33fbfdf20fcf",
+          "index": 0,
+          "type": "Experience",
+          "value": "25000",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "id": "6913e6f7d79b9aceda4e1d2e",
+          "index": 1,
+          "target": "54cb50c76803fa8b248b4571",
+          "type": "TraderStanding",
+          "value": "0.05",
+          "unknown": false
+        }
+      ]
+    }
+  }
+}

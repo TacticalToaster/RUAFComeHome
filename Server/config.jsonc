@@ -132,7 +132,7 @@
         "enableHunts": true,
         "hunts": {
           "exUsec": {
-            "huntZones": "ZoneOldAZS,ZoneFactorySide",
+            "huntZones": "ZoneCustoms,ZoneFactorySide",
             "huntMin": 3,
             "huntMax": 4
           }

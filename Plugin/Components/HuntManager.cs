@@ -64,6 +64,7 @@ namespace RUAFComeHome.Components
 
         public void OnBotCreated(BotOwner bot)
         {
+            /*
             var skipCheck = false;
 
             if (startNewHunt && bot.Profile.Info.Settings.Role == huntRole)
@@ -74,9 +75,22 @@ namespace RUAFComeHome.Components
             }
 
             if (!huntGroups.ContainsKey(bot.BotsGroup) && skipCheck == false) return;
+            */
+            if (RaidChangesUtil.LocationId.ToLower() == "lighthouse")
+            {
+                if (!WildSpawnTypeExtensions.IsRUAF(bot.Profile.Info.Settings.Role)) return;
+
+                var huntManagerRuaf = bot.gameObject.GetOrAddComponent<BotHuntManager>();
+                huntManagerRuaf.Init(bot, this);
+                huntManagerRuaf.ignoreRegroup = true;
+                FindFirstHuntTarget(huntManagerRuaf);
+                return;
+            }
+
+            if (!bot.SpawnProfileData.SpawnParams.Id_spawn.Contains("Hunt")) return;
 
             var huntManager = bot.gameObject.GetOrAddComponent<BotHuntManager>();
-            huntManager.Init(bot);
+            huntManager.Init(bot, this);
             FindFirstHuntTarget(huntManager);
         }
 
@@ -118,7 +132,7 @@ namespace RUAFComeHome.Components
         public void FindNewHuntTarget(BotHuntManager hunter)
         {
             var role = hunter.botOwner.Profile.Info.Settings.Role;
-            var allBots = Singleton<IBotGame>.Instance.BotsController.Players;
+            var allBots = Singleton<IBotGame>.Instance.BotsController.Players.Randomize();
 
             foreach (var bot in allBots)
             {
@@ -139,7 +153,12 @@ namespace RUAFComeHome.Components
                         huntGroups[hunter.botOwner.BotsGroup] = bot;
                     }
 
-                    hunter.huntTarget = huntGroups[hunter.botOwner.BotsGroup];
+                    foreach (var follower in hunter.botOwner.BotsGroup.Members)
+                    {
+                        follower.GetComponent<BotHuntManager>().huntTarget = huntGroups[hunter.botOwner.BotsGroup];
+                    }
+
+                    
                     return;
                 }
             }
@@ -147,7 +166,10 @@ namespace RUAFComeHome.Components
 
         public void AddHuntRoles(WildSpawnType hunter, List<WildSpawnType> hunted)
         {
-            validHuntRoles.Add(hunter, hunted);
+            if (validHuntRoles.ContainsKey(hunter))
+                validHuntRoles[hunter] = hunted;
+            else
+                validHuntRoles.Add(hunter, hunted);
         }
 
         public void AddHuntRoles(List<WildSpawnType> hunters, List<WildSpawnType> hunted)
@@ -157,6 +179,10 @@ namespace RUAFComeHome.Components
                 AddHuntRoles(hunter, hunted);
             }
         }
+
+        public readonly Dictionary<WildSpawnType, List<EPlayerSide>> validPMCHunts = new() {
+            { WildSpawnType.exUsec, new() { EPlayerSide.Bear } }
+        };
 
         public readonly Dictionary<WildSpawnType, List<WildSpawnType>> validHuntRoles = new() {
             { WildSpawnType.exUsec, new() { (WildSpawnType)848400, (WildSpawnType)848401, (WildSpawnType)848402, (WildSpawnType)848403, (WildSpawnType)848404, (WildSpawnType)848405 } }

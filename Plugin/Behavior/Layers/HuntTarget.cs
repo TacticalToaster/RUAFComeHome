@@ -25,6 +25,7 @@ namespace RUAFComeHome.Behavior.Layers
 
         public HuntTargetLayer(BotOwner botOwner, int priority) : base(botOwner, priority)
         {
+            huntManager = botOwner.GetOrAddComponent<BotHuntManager>();
         }
 
         public override void Start()
@@ -52,12 +53,6 @@ namespace RUAFComeHome.Behavior.Layers
 
         public override bool IsActive()
         {
-            if (huntManager == null)
-            {
-                if (BotOwner.TryGetComponent<BotHuntManager>(out var manager)) huntManager = manager;
-                else return false;
-            }
-
             if (!huntManager.HasHuntTarget())
                 return false;
 
@@ -69,7 +64,12 @@ namespace RUAFComeHome.Behavior.Layers
         public void getNextAction()
         {
             lastAction = nextAction;
-
+            if (huntManager.shouldRegroup && !huntManager.ignoreRegroup)
+            {
+                nextAction = typeof(HuntRegroupAction);
+                nextActionReason = "ShouldRegroup";
+                return;
+            }
             if (huntManager.shouldSearch)
             {
                 nextAction = typeof(SearchForTargetAction);
@@ -82,7 +82,7 @@ namespace RUAFComeHome.Behavior.Layers
 
         public override bool IsCurrentActionEnding()
         {
-            return nextAction != lastAction;
+            return nextAction != lastAction || (CurrentAction.Type != nextAction && CurrentAction.Type != lastAction);
         }
     }
 }

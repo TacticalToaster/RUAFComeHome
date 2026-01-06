@@ -18,7 +18,7 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "RUAF Come Home";
     public override string Author { get; init; } = "TacticalToaster";
     public override List<string>? Contributors { get; init; } = new() { };
-    public override SemanticVersioning.Version Version { get; init; } = new(1, 0, 0);
+    public override SemanticVersioning.Version Version { get; init; } = new(1, 1, 0);
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
@@ -77,6 +77,16 @@ public class RUAFComeHome(
             "ruafMachinegunner"
         };
 
+        var typeDictionary = new Dictionary<int, string>()
+        {
+            { 848400, "ruafRifleman" },
+            { 848401, "ruafRiflemanSenior" },
+            { 848402, "ruafAutorifleman" },
+            { 848403, "ruafGrenadier" },
+            { 848404, "ruafMarksman" },
+            { 848405, "ruafMachinegunner" }
+        };
+
         var assembly = Assembly.GetExecutingAssembly();
 
         // Load base bot types using a shared type
@@ -86,17 +96,19 @@ public class RUAFComeHome(
         await loadoutService.LoadLoadoutsWithTemplate(assembly, "ruaf_standard");
 
         // Replace some values in the bot types
-        await customBotTypeService.LoadBotTypeReplace(Assembly.GetExecutingAssembly(), "ruaf_all", typeList);
+        await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_all", typeList);
 
         // Replace values per type based on files that correspond to the passed type list
-        await customBotTypeService.LoadBotTypeReplaceByTypes(Assembly.GetExecutingAssembly(), typeList);
+        await customBotTypeService.LoadBotTypeReplaceByTypes(assembly, typeList);
 
         // Add couturier mod related stuff
         if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.turbodestroyer.couturier"))
         {
             // Replace the appearance settings of the bots so they use couturier clothes
-            await customBotTypeService.LoadBotTypeReplace(Assembly.GetExecutingAssembly(), "ruaf_couturier", typeList);
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_couturier", typeList);
         }
+
+        customBotTypeService.AddCustomWildSpawnTypeNames(typeDictionary);
 
         // Add enemies based on factions
         factionService.AddEnemyByFaction(typeList, "savage");
@@ -119,8 +131,10 @@ public class RUAFComeHome(
             factionService.AddWarnByFaction(typeList, "untar");
         }
 
+        await commonLib.CustomQuestService.CreateCustomQuests(assembly);
+
         // Use WTT to add locales
-        await commonLib.CustomLocaleService.CreateCustomLocales(Assembly.GetExecutingAssembly());
+        await commonLib.CustomLocaleService.CreateCustomLocales(assembly);
 
         // Add RUAF to spawns
         ruafSpawnController.AdjustAllRuafSpawns();

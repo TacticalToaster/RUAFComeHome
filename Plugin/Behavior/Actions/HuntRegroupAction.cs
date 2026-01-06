@@ -13,14 +13,14 @@ using UnityEngine;
 
 namespace RUAFComeHome.Behavior.Actions
 {
-    internal class HuntTargetAction : CustomLogic
+    internal class HuntRegroupAction : CustomLogic
     {
         private float nextUpdate;
         private BotHuntManager huntManager;
         private FieldInfo botZoneField = null;
         private GClass395 baseSteeringLogic;
 
-        public HuntTargetAction(BotOwner botOwner) : base(botOwner)
+        public HuntRegroupAction(BotOwner botOwner) : base(botOwner)
         {
             baseSteeringLogic = new GClass395();
 
@@ -39,6 +39,8 @@ namespace RUAFComeHome.Behavior.Actions
             BotOwner.Mover.Stop();
             BotOwner.PatrollingData.Pause();
             BotOwner.AimingManager.CurrentAiming.LoseTarget();
+
+            huntManager.regroupPointDirty = true;
         }
 
         public override void Stop()
@@ -46,33 +48,68 @@ namespace RUAFComeHome.Behavior.Actions
             base.Stop();
             updateBotZone();
             BotOwner.PatrollingData.Unpause();
+            BotOwner.Sprint(false);
         }
 
         public override void Update(CustomLayer.ActionData data)
         {
             BotOwner.SetPose(1f);
             BotOwner.SetTargetMoveSpeed(1f);
-            BotOwner.Sprint(false);
+            BotOwner.Sprint(true);
 
             BotOwner.Steering.LookToMovingDirection();
             baseSteeringLogic.Update(BotOwner);
 
             if (nextUpdate > Time.time) return;
 
+            if (BotOwner.BotsGroup.BossGroup == null || !BotOwner.BotsGroup.BossGroup.Boss.HealthController.IsAlive)
+            {
+                huntManager.shouldRegroup = false;
+            }
+
+            huntManager.UpdateRegroupPoint();
+
             nextUpdate = Time.time + 3f;
 
             updateBotZone();
 
-            BotOwner.GoToPoint(huntManager.knownLocation);
-
-            if (BotOwner.Boss.IamBoss)
+            if (BotOwner.Boss.IamBoss || BotOwner.Position.SqrDistance(huntManager.regroupPoint) < 1f || BotOwner.Position.SqrDistance(BotOwner.BotFollower.BossToFollow.Position) < 10f * 10f)
             {
-                huntManager.shouldRegroup = huntManager.CheckShouldRegroup();
+                huntManager.isRegrouping = false;
             }
 
-            if (BotOwner.Position.SqrDistance(huntManager.knownLocation) < 5f * 5f)
+            if (!BotOwner.Boss.IamBoss)
             {
-                huntManager.shouldSearch = true;
+                if (BotOwner.Position.SqrDistance(huntManager.regroupPoint) < .75f * .75f)
+                { 
+                    BotOwner.StopMove();
+                }
+                else
+                    BotOwner.GoToPoint(huntManager.regroupPoint);
+            }
+            else
+            {
+                BotOwner.StopMove();
+
+                bool stillRegrouping = false;
+                foreach (var manager in huntManager.GetFollowerManagers())
+                {
+                    if (manager.isRegrouping && !huntManager.botOwner.IsDead)
+                    {
+                        stillRegrouping = true;
+                        break;
+                    }
+                }
+                if (!stillRegrouping)
+                {
+                    foreach (var manager in huntManager.GetFollowerManagers())
+                    {
+                        manager.shouldRegroup = false;
+                    }
+
+                    huntManager.shouldRegroup = false;
+                    return;
+                }
             }
         }
 
