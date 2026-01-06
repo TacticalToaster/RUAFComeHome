@@ -29,30 +29,6 @@ public class RUAFSpawnController(
             var locations = databaseService.GetLocations();
             var mainConfig = configController.ModConfig;
 
-            var factoryspecial = new Location();
-            var factoryspecialPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "db", "maps", "factory4_special");
-            factoryspecial.Base = jsonUtil.DeserializeFromFile<LocationBase>(Path.Combine(factoryspecialPath, "base.json"));
-            //factoryspecial.LooseLoot = jsonUtil.DeserializeFromFile<LazyLoad<LooseLoot>>(Path.Combine(factoryspecialPath, "looseLoot.json"));
-            //factoryspecial.StaticAmmo = jsonUtil.DeserializeFromFile<Dictionary<string,IEnumerable<StaticAmmoDetails>>>(Path.Combine(factoryspecialPath, "staticAmmo.json"));
-            //factoryspecial.StaticContainers = jsonUtil.DeserializeFromFile<LazyLoad<StaticContainerDetails>>(Path.Combine(factoryspecialPath, "staticContainers.json"));
-            //factoryspecial.StaticLoot = jsonUtil.DeserializeFromFile<LazyLoad<Dictionary<MongoId,StaticLootDetails>>>(Path.Combine(factoryspecialPath, "staticLoot.json"));
-            //factoryspecial.Statics = jsonUtil.DeserializeFromFile<StaticContainer>(Path.Combine(factoryspecialPath, "statics.json"));
-
-            logger.Error($"Factory: {factoryspecial.Base.Name}");
-
-            //locations.AddToExtensionData("factory4_special", factoryspecial);
-            locations.Develop.Base = factoryspecial.Base;
-            //locations.Develop.AllExtracts = factoryspecial.AllExtracts;
-            locations.Develop.LooseLoot = locations.Factory4Day.LooseLoot;//new(() => new LooseLoot());//;
-            locations.Develop.StaticAmmo = locations.Factory4Day.StaticAmmo;//new();//;
-            locations.Develop.StaticContainers = locations.Factory4Day.StaticContainers;//new(() => new StaticContainerDetails());//;
-            locations.Develop.StaticLoot = locations.Factory4Day.StaticLoot;//new(() => new Dictionary<MongoId, StaticLootDetails>());//;
-            locations.Develop.Statics = factoryspecial.Statics;
-
-            tables.Globals.Configuration.BTRSettings.LocationsWithBTR = tables.Globals.Configuration.BTRSettings.LocationsWithBTR.Except(new[] { "develop" });
-
-            //logger.Warn($"Locations: {locations.GetByJsonProperty<Location>("factory4_special").Base.Name}");
-
             foreach (var map in mainConfig.locations.Keys)
             {
                 logger.Info($"Adjusting RUAF spawns for {map}.");
@@ -87,48 +63,6 @@ public class RUAFSpawnController(
                     AdjustHuntSpawnsForMap(map, mapConfig, mainConfig, spawns);
                 }
             }
-
-            locations.Lighthouse.Base.BossLocationSpawn = locations.Lighthouse.Base.BossLocationSpawn.FindAll(x => x.BossName.Contains("exUsec") || x.BossName.Contains("Knight"));
-            locations.Lighthouse.Base.Waves.Clear();
-
-            var goons = locations.Lighthouse.Base.BossLocationSpawn.Find(x => x.BossName.Contains("Knight"));
-            if (goons != null)
-            {
-                goons.BossChance = 100;
-                goons.ForceSpawn = true;
-                goons.BossZone = "Zone_TreatmentContainers";
-            }
-
-            foreach (var spawn in locations.Lighthouse.Base.BossLocationSpawn)
-            {
-                if (spawn.BossZone == "Zone_Island")
-                    continue;
-
-                spawn.BossChance = 100;
-                spawn.IgnoreMaxBots = true;
-                spawn.Delay = -1;
-                spawn.Time = -1;
-            }
-
-            var hunt1 = GeneratePatrol(3, 100, true);
-            var hunt2 = GeneratePatrol(3, 100, true);
-            var hunt3 = GeneratePatrol(5, 100, true);
-
-            hunt1.BossZone = "Zone_LongRoad";
-            hunt1.Time = -1;
-            hunt1.Delay = -1;
-
-            hunt2.BossZone = "Zone_Village";
-            hunt2.Time = -1;
-            hunt2.Delay = -1;
-
-            hunt3.BossZone = "Zone_Bridge";
-            hunt3.Time = -1;
-            hunt3.Delay = -1;
-
-            locations.Lighthouse.Base.BossLocationSpawn.Add(hunt1);
-            locations.Lighthouse.Base.BossLocationSpawn.Add(hunt2);
-            locations.Lighthouse.Base.BossLocationSpawn.Add(hunt3);
         }
         catch (Exception ex)
         {
