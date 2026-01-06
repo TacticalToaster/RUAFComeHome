@@ -53,6 +53,9 @@
     <Content Include="db\CustomQuests\prapor\Images\ruaf4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="db\bots\sharedTypes\ruaf_backport.jsonc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
