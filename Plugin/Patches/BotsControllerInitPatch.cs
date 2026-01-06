@@ -22,7 +22,6 @@ namespace RUAFComeHome.Patches
         {
             Plugin.LogSource.LogInfo("BotsController initialized, initializing Managers...");
             MonoBehaviourSingleton<RuafCheckpointManager>.Instance.InitRaid();
-            MonoBehaviourSingleton<HuntManager>.Instance.InitRaid();
         }
     }
 }

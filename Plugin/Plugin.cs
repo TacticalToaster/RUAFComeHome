@@ -29,7 +29,6 @@ namespace RUAFComeHome
             new BotsControllerInitPatch().Enable();
 
             this.GetOrAddComponent<RuafCheckpointManager>();
-            var huntManger = this.GetOrAddComponent<HuntManager>();
 
             InitConfig();
         }
@@ -55,12 +54,12 @@ namespace RUAFComeHome
 
         private void SpawnRuafHunt(object sender, EventArgs e)
         {
-            MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("ruafHunt");
+            //MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("ruafHunt");
         }
 
         private void SpawnRogueHunt(object sender, EventArgs e)
         {
-            MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("exUsecHunt");
+            //MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("exUsecHunt");
         }
     }
 }
