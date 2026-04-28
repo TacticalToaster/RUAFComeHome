@@ -2,7 +2,7 @@
   "695c99f4138ce4c3ccb622ef": {
     "QuestName": "Small Sabotage",
     "_id": "695c99f4138ce4c3ccb622ef",
-    "traderId": "peacekeeper",
+    "traderId": "5935c25fb3acc3127c3d8cd9",
     "type": "Elimination",
     "location": "5704e3c2d2720bac5b8b4567",
     "image": "/files/quest/icon/ruaf1.png",
@@ -55,10 +55,15 @@
                 "id": "695c99f4aecc012992fcb4e3",
                 "resetOnSessionEnd": false,
                 "savageRole": [
-                  "bossKilla"
+                  "ruafRifleman",
+                  "ruafRiflemanSenior",
+                  "ruafAutorifleman",
+                  "ruafGrenadier",
+                  "ruafMarksman",
+                  "ruafMachinegunner"
                 ],
                 "target": "Savage",
-                "value": 8,
+                "value": 0,
                 "weapon": [],
                 "weaponCaliber": [],
                 "weaponModsExclusive": [],
@@ -100,7 +105,7 @@
           "index": 0,
           "parentId": "",
           "status": [
-            3
+            4
           ],
           "target": "695c96ccf3389a5ab3f594e6",
           "visibilityConditions": []
@@ -127,7 +132,7 @@
           "availableInGameEditions": [],
           "id": "695c99f43577051d56b2f71c",
           "index": 0,
-          "target": "prapor",
+          "target": "54cb50c76803fa8b248b4571",
           "type": "TraderStanding",
           "value": "-0.03",
           "unknown": false
@@ -138,7 +143,7 @@
   "695c9bb87f63551bef72cecb": {
     "QuestName": "Less Small Sabotage",
     "_id": "695c9bb87f63551bef72cecb",
-    "traderId": "peacekeeper",
+    "traderId": "5935c25fb3acc3127c3d8cd9",
     "type": "Elimination",
     "location": "any",
     "image": "/files/quest/icon/ruaf2.png",
@@ -191,10 +196,10 @@
                 "id": "695c9bb8b23e525dce7a32dd",
                 "resetOnSessionEnd": false,
                 "savageRole": [
-                  "bossTagilla"
+                  "ruafRiflemanSenior"
                 ],
                 "target": "Savage",
-                "value": 3,
+                "value": 0,
                 "weapon": [],
                 "weaponCaliber": [],
                 "weaponModsExclusive": [],
@@ -228,7 +233,7 @@
           "index": 0,
           "parentId": "",
           "status": [
-            3
+            4
           ],
           "target": "695c99f4138ce4c3ccb622ef",
           "visibilityConditions": []
@@ -255,7 +260,7 @@
           "availableInGameEditions": [],
           "id": "695c9bb85e1b373df4ea670e",
           "index": 0,
-          "target": "prapor",
+          "target": "54cb50c76803fa8b248b4571",
           "type": "TraderStanding",
           "value": "-0.05",
           "unknown": false

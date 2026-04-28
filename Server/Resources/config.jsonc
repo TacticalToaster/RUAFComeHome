@@ -86,7 +86,9 @@
             // Minimum members in the hunt
             "huntMin": 3,
             // Maximum members in the hunt
-            "huntMax": 4
+            "huntMax": 4,
+            // Chance the hunt will spawn
+            "huntChance": 30
           }
         }
       }
@@ -134,7 +136,8 @@
           "exUsec": {
             "huntZones": "ZoneCustoms,ZoneFactorySide",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
           }
         }
       }
@@ -163,7 +166,8 @@
           "exUsec": {
             "huntZones": "ZoneTrucks,ZonePowerStation",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
           }
         }
       }
@@ -201,7 +205,8 @@
           "exUsec": {
             "huntZones": "ZoneMeteoStation,ZonePowerStation",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
           }
         }
       }
@@ -230,7 +235,8 @@
           "exUsec": {
             "huntZones": "ZoneColumn,ZoneHotel_1",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
           }
         }
       }
@@ -259,7 +265,8 @@
           "ruaf": {
             "huntZones": "Zone_DestroyedHouse",
             "huntMin": 4,
-            "huntMax": 6
+            "huntMax": 6,
+            "huntChance": 30
           }
         }
       }

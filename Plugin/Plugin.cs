@@ -5,11 +5,14 @@ using RUAFComeHome.Components;
 using RUAFComeHome.Patches;
 using System;
 using System.Collections.Generic;
+using EFT;
+using MoreBotsAPI.Components;
 
 namespace RUAFComeHome
 {
     [BepInDependency("xyz.drakia.bigbrain", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("me.sol.sain", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.morebotsapi.tacticaltoaster")]
     [BepInPlugin(ClientInfo.GUID, ClientInfo.PluginName, ClientInfo.Version)]
     public class Plugin : BaseUnityPlugin
     {
@@ -29,8 +32,23 @@ namespace RUAFComeHome
             new BotsControllerInitPatch().Enable();
 
             this.GetOrAddComponent<RuafCheckpointManager>();
+            
+            var ruafEnums = new List<int> { 848400, 848401, 848402, 848403, 848404, 848405 }
+                .ConvertAll(x => (WildSpawnType)x);
+            
+            MonoBehaviourSingleton<HuntManager>.Instance.AddHuntRoles(ruafEnums, new List<WildSpawnType>()
+                {
+                    WildSpawnType.exUsec
+                });
+            MonoBehaviourSingleton<HuntManager>.Instance.AddHuntRoles(new List<WildSpawnType>() { WildSpawnType.exUsec }, ruafEnums);
+            /*
+             MonoBehaviourSingleton<HuntManager>.Instance.AddHuntSides(ruafEnums, new List<EPlayerSide>()
+                {
+                    EPlayerSide.Usec
+                });
+            */
 
-            InitConfig();
+            //InitConfig();
         }
 
         private void InitConfig()
@@ -54,12 +72,12 @@ namespace RUAFComeHome
 
         private void SpawnRuafHunt(object sender, EventArgs e)
         {
-            //MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("ruafHunt");
+            MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("ruafHunt");
         }
 
         private void SpawnRogueHunt(object sender, EventArgs e)
         {
-            //MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("exUsecHunt");
+            MonoBehaviourSingleton<HuntManager>.Instance.StartHunt("exUsecHunt");
         }
     }
 }

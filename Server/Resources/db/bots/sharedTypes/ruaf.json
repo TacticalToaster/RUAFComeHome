@@ -1953,6 +1953,8 @@
         "CAN_STAND_BY": false,
         "CAN_THROW_REQUESTS": true,
         "CAN_USE_MEDS": true,
+        "CAN_TAKE_ITEMS": false,
+        "CAN_DROP_ITEMS": false,
         "CHACE_TO_DEACTIVATE": 75,
         "CHANCE_FUCK_YOU_ON_CONTACT_100": 0.01,
         "CHANCE_SHOOT_WHEN_WARN_PLAYER_100": 25,
@@ -1999,7 +2001,6 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "pmcBot",
           "gifter"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
@@ -2063,7 +2064,8 @@
         "SUSPETION_PLACE_LIFETIME": 7,
         "TALK_DELAY": 1.1,
         "TALK_DELAY_BIG": 45.1,
-        "VISION_DIST_COEF_PEACE": 0.75
+        "VISION_DIST_COEF_PEACE": 0.75,
+        "USE_REAL_LOOTING": false
       },
       "Scattering": {
         "AMPLITUDE_FACTOR": 0.25,
@@ -2467,7 +2469,6 @@
     },
     "equipment": {
       "ArmBand": {
-        "619bdeb986e01e16f839a99e": 1
       },
       "ArmorVest": {
         

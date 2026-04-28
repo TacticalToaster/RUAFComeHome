@@ -23,10 +23,11 @@ namespace RUAFComeHome.Prepatch
 				"PmcBear",
                 "PmcUsec",
                 "ExURequest",
-                "StationaryWS"
+                "StationaryWS",
+                "Utility peace"
             };
 
-            int ruafBrainInt = 24;//9;
+            int ruafBrainInt = 9;//24;//9;
 
             // rifleman
             var ruafBot = new CustomWildSpawnType(848400, "ruafRifleman", "RUAF", ruafBrainInt, true, true, false);
@@ -42,7 +43,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -63,7 +65,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .66f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -84,7 +87,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -105,7 +109,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -126,7 +131,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -147,7 +153,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);

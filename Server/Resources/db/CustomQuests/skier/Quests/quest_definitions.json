@@ -2,7 +2,7 @@
   "695c96ccf3389a5ab3f594e6": {
     "QuestName": "Route Security",
     "_id": "695c96ccf3389a5ab3f594e6",
-    "traderId": "skier",
+    "traderId": "58330581ace78e27b8b10cee",
     "type": "Elimination",
     "location": "56f40101d2720b2a4d8b45d6",
     "image": "/files/quest/icon/ruaf1.png",
@@ -55,10 +55,15 @@
                 "id": "695c96ccbb326100c0a34a78",
                 "resetOnSessionEnd": false,
                 "savageRole": [
-                  "bossKilla"
+                  "ruafRifleman",
+                  "ruafRiflemanSenior",
+                  "ruafAutorifleman",
+                  "ruafGrenadier",
+                  "ruafMarksman",
+                  "ruafMachinegunner"
                 ],
                 "target": "Savage",
-                "value": 5,
+                "value": 0,
                 "weapon": [],
                 "weaponCaliber": [],
                 "weaponModsExclusive": [],

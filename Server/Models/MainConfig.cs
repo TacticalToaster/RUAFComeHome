@@ -65,6 +65,7 @@ public class FactionHuntConfig
     public int huntMin { get; set; }
     public int huntMax { get; set; }
     public string huntZones { get; set; }
+    public int huntChance { get; set; }
 }
 
 public class MapConfig

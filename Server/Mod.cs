@@ -167,8 +167,7 @@ public class RUAFComeHomeLoadFaction(
 {
     public async Task OnLoad()
     {
-        // Create the new RUAF faction
-        factionService.Factions.Add("ruaf", new Faction()
+        var ruafFaction = new Faction()
         {
             Name = "ruaf",
             BotTypes =
@@ -179,8 +178,13 @@ public class RUAFComeHomeLoadFaction(
                 (WildSpawnType)848403,
                 (WildSpawnType)848404,
                 (WildSpawnType)848405
-            }
-        });
+            },
+            RevengeAfterRaids = true,
+            RevengeRaidAmount = 3
+        };
+        
+        // Create the new RUAF faction
+        factionService.Factions.Add("ruaf", ruafFaction);
 
         await Task.CompletedTask;
     }
