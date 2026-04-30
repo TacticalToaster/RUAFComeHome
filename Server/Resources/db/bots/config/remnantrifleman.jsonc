@@ -30,7 +30,7 @@
   },
   // Record: EquipmentFilters
   "equipment": {
-    "faceShieldIsActiveChancePercent": 75,
+    "faceShieldIsActiveChancePercent": 50,
     "forceOnlyArmoredRigWhenNoArmor": true,
     "forceStock": true,
     "laserIsActiveChancePercent": 75,
