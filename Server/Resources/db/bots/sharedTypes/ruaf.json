@@ -2471,7 +2471,7 @@
       "ArmBand": {
       },
       "ArmorVest": {
-        
+        "68948a95d8f2b85fb705e2a6": 50
       },
       "Backpack": {
         "5ab8ee7786f7742d8f33f0b9": 1,
@@ -2504,7 +2504,9 @@
         "5c0a794586f77461c458f892": 1
       },
       "TacticalVest": {
-        
+        "68948b118c57a8a52301d7ae": 40,
+        "68948ad72c87773b9f06d73f": 40,
+        "68948aebd8f2b85fb705e2b0": 40
       }
     },
     "items": {
@@ -2612,6 +2614,50 @@
       }
     },
     "mods": {
+      "68948a95d8f2b85fb705e2a6": {
+        "Front_plate": ["65573fa5655447403702a816"],
+        "Back_plate": ["65573fa5655447403702a816"],
+        "Left_side_plate": ["64afd81707e2cf40e903a316"],
+        "Right_side_plate": ["64afd81707e2cf40e903a316"],
+        "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+        "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+        "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+        "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+        "Collar": ["68a47ae8f9d424639c088230"]
+      },
+      "68948b118c57a8a52301d7ae": {
+        "Front_plate": ["65573fa5655447403702a816"],
+        "Back_plate": ["65573fa5655447403702a816"],
+        "Left_side_plate": ["64afd81707e2cf40e903a316"],
+        "Right_side_plate": ["64afd81707e2cf40e903a316"],
+        "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+        "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+        "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+        "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+        "Collar": ["68a47ae8f9d424639c088230"]
+      },
+      "68948ad72c87773b9f06d73f": {
+        "Front_plate": ["65573fa5655447403702a816"],
+        "Back_plate": ["65573fa5655447403702a816"],
+        "Left_side_plate": ["64afd81707e2cf40e903a316"],
+        "Right_side_plate": ["64afd81707e2cf40e903a316"],
+        "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+        "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+        "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+        "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+        "Collar": ["68a47ae8f9d424639c088230"]
+      },
+      "68948aebd8f2b85fb705e2b0": {
+        "Front_plate": ["65573fa5655447403702a816"],
+        "Back_plate": ["65573fa5655447403702a816"],
+        "Left_side_plate": ["64afd81707e2cf40e903a316"],
+        "Right_side_plate": ["64afd81707e2cf40e903a316"],
+        "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+        "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+        "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+        "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+        "Collar": ["68a47ae8f9d424639c088230"]
+      },
       "5447a9cd4bdc2dbd208b4567": {
         "mod_charge": [
           "5ea16d4d5aad6446a939753d",
