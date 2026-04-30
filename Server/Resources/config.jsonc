@@ -4,9 +4,9 @@
     // Enable or disable additional debug logs
     "logs": false,
     // Force patrols to spawn in every raid (as if patrolChance was 100%)
-    "spawnAlways": false,
+    "spawnAlways": true,
     // Force patrols to always spawn at the start of raids
-    "spawnInstantlyAlways": false
+    "spawnInstantlyAlways": true
   },
   // Settings for changing how patrols and their members are generated
   "patrols": {
@@ -79,7 +79,7 @@
         "enableHunts": true,
         // List of hunts for different factions
         "hunts": {
-          // Specific hunts (only ruaf and exUsec are supported)
+          // Specific hunts (only ruaf, remnant, and exUsec are supported)
           "exUsec": {
             // Zones the hunt can spawn in
             "huntZones": "ZoneScavBase2,ZoneBigRocks",
@@ -89,6 +89,16 @@
             "huntMax": 4,
             // Chance the hunt will spawn
             "huntChance": 30
+          },
+          "remnant": {
+            // Zones the hunt can spawn in
+            "huntZones": "ZoneMiniHouse,ZoneBigRocks",
+            // Minimum members in the hunt
+            "huntMin": 3,
+            // Maximum members in the hunt
+            "huntMax": 4,
+            // Chance the hunt will spawn
+            "huntChance": 50
           }
         }
       }
@@ -138,6 +148,12 @@
             "huntMin": 3,
             "huntMax": 4,
             "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneWade,ZoneBlockPost",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -168,6 +184,12 @@
             "huntMin": 3,
             "huntMax": 4,
             "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneRoad",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -207,6 +229,12 @@
             "huntMin": 3,
             "huntMax": 4,
             "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneRailWays",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -237,6 +265,12 @@
             "huntMin": 3,
             "huntMax": 4,
             "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneCard1",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -267,6 +301,12 @@
             "huntMin": 4,
             "huntMax": 6,
             "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "Zone_DestroyedHouse",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }

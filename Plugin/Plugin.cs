@@ -5,8 +5,12 @@ using RUAFComeHome.Components;
 using RUAFComeHome.Patches;
 using System;
 using System.Collections.Generic;
+using Comfort.Common;
+using DrakiaXYZ.BigBrain.Brains;
 using EFT;
+using MoreBotsAPI.Behavior.Layers;
 using MoreBotsAPI.Components;
+using RUAFComeHome.Behavior.Layers;
 
 namespace RUAFComeHome
 {
@@ -36,18 +40,48 @@ namespace RUAFComeHome
             var ruafEnums = new List<int> { 848400, 848401, 848402, 848403, 848404, 848405 }
                 .ConvertAll(x => (WildSpawnType)x);
             
+            var remnantEnums = new List<int> { 848406 }
+                .ConvertAll(x => (WildSpawnType)x);
+            
             MonoBehaviourSingleton<HuntManager>.Instance.AddHuntRoles(ruafEnums, new List<WildSpawnType>()
                 {
                     WildSpawnType.exUsec
                 });
+            
+            MonoBehaviourSingleton<HuntManager>.Instance.AddHuntRoles(remnantEnums, new List<WildSpawnType>()
+            {
+                WildSpawnType.exUsec
+            });
             MonoBehaviourSingleton<HuntManager>.Instance.AddHuntRoles(new List<WildSpawnType>() { WildSpawnType.exUsec }, ruafEnums);
-            /*
-             MonoBehaviourSingleton<HuntManager>.Instance.AddHuntSides(ruafEnums, new List<EPlayerSide>()
-                {
+            
+            MonoBehaviourSingleton<HuntManager>.Instance.AddHuntSides(remnantEnums, new List<EPlayerSide>()
+                { 
                     EPlayerSide.Usec
                 });
-            */
 
+            MonoBehaviourSingleton<HuntManager>.Instance.OnBotHuntInit += manager =>
+            {
+                if (WildSpawnTypeExtensions.IsRemnant(manager.botOwner.Profile.Info.Settings.Role))
+                {
+                    foreach (var player in Singleton<GameWorld>.Instance.AllAlivePlayersList)
+                    {
+                        if (player.IsAI) continue;
+                        if (MonoBehaviourSingleton<FactionManager>.Instance.ShouldRevengeByID(player.ProfileId, "ruaf"))
+                        {
+                            manager.botOwner.GetOrAddComponent<BotHuntManager>().priorityTargets.Add(player);
+                        }
+                    }
+                }
+            };
+
+            var ruafBrainList = new List<string>() { "PMC", "Pmc", "ExUsec", "Assault", "PmcUsec", "PmcBear", "PmcUSEC", "PmcBEAR" };
+            var ruafTypes = new List<int>() { 848400, 848401, 848402, 848403, 848404, 848405, 848406 }.ConvertAll(x => (WildSpawnType)x);
+
+            BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), ruafBrainList, 4, ruafTypes);
+            BrainManager.AddCustomLayer(typeof(HuntTargetLayer), ruafBrainList, 8, ruafTypes);
+            BrainManager.AddCustomLayer(typeof(HuntTargetLayer), new List<string> { "ExUsec" }, 5, new List<WildSpawnType>{ WildSpawnType.exUsec });
+            
+            LogSource.LogInfo($"RUAFComeHome: LAYERS ADDED");
             //InitConfig();
         }
 

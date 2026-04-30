@@ -130,11 +130,96 @@
       "Success": [
         {
           "availableInGameEditions": [],
-          "id": "695c99f43577051d56b2f71c",
+          "id": "695c9bb85e1b373df4ea670e",
           "index": 0,
+          "target": "5935c25fb3acc3127c3d8cd9",
+          "type": "TraderStanding",
+          "value": "0.02",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "id": "695c99f43577051d56b2f71c",
+          "index": 1,
           "target": "54cb50c76803fa8b248b4571",
           "type": "TraderStanding",
           "value": "-0.03",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f176225417b3cbbe19c99d",
+          "index": 2,
+          "items": [
+            {
+              "_id": "69f176225a349fcd3d5ad4ee",
+              "_tpl": "57235b6f24597759bf5a30f1",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "69f176225a349fcd3d5ad4ee",
+          "type": "Item",
+          "value": "1",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f1762299a5d88117e0b6d0",
+          "index": 3,
+          "items": [
+            {
+              "_id": "69f17622ed636809b48dd8a8",
+              "_tpl": "5a16b93dfcdbcbcae6687261",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "69f17622ed636809b48dd8a8",
+          "type": "Item",
+          "value": "1",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f176221e7c16ac3013c0f3",
+          "index": 4,
+          "items": [
+            {
+              "_id": "69f176222537e913f9c2771b",
+              "_tpl": "56ea8180d2720bf2698b456a",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "69f176222537e913f9c2771b",
+          "type": "Item",
+          "value": "1",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f176227d099795725e73eb",
+          "index": 5,
+          "items": [
+            {
+              "_id": "69f17622591a5d71fbd49614",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 300
+              }
+            }
+          ],
+          "target": "69f17622591a5d71fbd49614",
+          "type": "Item",
+          "value": "300",
           "unknown": false
         }
       ]
@@ -260,9 +345,94 @@
           "availableInGameEditions": [],
           "id": "695c9bb85e1b373df4ea670e",
           "index": 0,
+          "target": "5935c25fb3acc3127c3d8cd9",
+          "type": "TraderStanding",
+          "value": "0.05",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "id": "695c9bb85e1b373df4ea670e",
+          "index": 1,
           "target": "54cb50c76803fa8b248b4571",
           "type": "TraderStanding",
           "value": "-0.05",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f176224ee9beabbcc43ba0",
+          "index": 2,
+          "items": [
+            {
+              "_id": "69f176229b9f59c558b4e97a",
+              "_tpl": "5c0558060db834001b735271",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "69f176229b9f59c558b4e97a",
+          "type": "Item",
+          "value": "1",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f17622513dc263d981c06f",
+          "index": 3,
+          "items": [
+            {
+              "_id": "69f1762288a6e401ad734ab9",
+              "_tpl": "65702652cfc010a0f5006a53",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "69f1762288a6e401ad734ab9",
+          "type": "Item",
+          "value": "1",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f17622f05062bdb2d5d379",
+          "index": 4,
+          "items": [
+            {
+              "_id": "69f17622c5c683a69f91fa90",
+              "_tpl": "65702558cfc010a0f5006a25",
+              "upd": {
+                "StackObjectsCount": 2
+              }
+            }
+          ],
+          "target": "69f17622c5c683a69f91fa90",
+          "type": "Item",
+          "value": "2",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69f176227d099795725e73eb",
+          "index": 5,
+          "items": [
+            {
+              "_id": "69f17622591a5d71fbd49614",
+              "_tpl": "5696686a4bdc2da3298b456a",
+              "upd": {
+                "StackObjectsCount": 300
+              }
+            }
+          ],
+          "target": "69f17622591a5d71fbd49614",
+          "type": "Item",
+          "value": "300",
           "unknown": false
         }
       ]

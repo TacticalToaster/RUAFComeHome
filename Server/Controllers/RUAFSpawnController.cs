@@ -8,6 +8,8 @@ using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Json;
 using System.Reflection;
 using System.Text.Json;
+using MoreBotsServer.Services;
+using SPTarkov.Server.Core.Models.Eft.Match;
 
 namespace RUAFComeHomeServer.Controllers;
 
@@ -17,10 +19,28 @@ public class RUAFSpawnController(
     RandomUtil randomUtil,
     ConfigController configController,
     DatabaseService databaseService,
+    FactionService factionService,
     RUAFLogger logger,
     HttpResponseUtil httpResponse
 )
 {
+    public float RemnantChance = 1f;
+    
+    public void AdjustAllRuafSpawns(EndLocalRaidRequestData info, MongoId sessionId, string output)
+    {
+        var revenges = factionService.GetFactionsRevenges();
+        if (revenges.ContainsKey(info?.Results?.Profile?.Id ?? "") &&
+            revenges[info.Results.Profile.Id].Contains("ruaf"))
+            RemnantChance += 1f;
+        else
+        {
+            RemnantChance -= .5f;
+            if (RemnantChance < 1f) RemnantChance = 1f;
+        }
+        
+        AdjustAllRuafSpawns();
+    }
+    
     public void AdjustAllRuafSpawns()
     {
         try
@@ -149,6 +169,12 @@ public class RUAFSpawnController(
             spawns.RemoveAll(x => x.TriggerId == "hunt" && x.BossName.Contains("ruaf"));
             AddRuafHuntToMap(location, mapConfig, mainConfig, spawns);
         }
+        
+        if (mapConfig.hunt.hunts.ContainsKey("remnant"))
+        {
+            spawns.RemoveAll(x => x.TriggerId == "hunt" && x.BossName.Contains("remnant"));
+            AddRemnantHuntToMap(location, mapConfig, mainConfig, spawns, GetRemnantChanceMod());
+        }
 
         if (mapConfig.hunt.hunts.ContainsKey("exUsec"))
         {
@@ -176,6 +202,27 @@ public class RUAFSpawnController(
         spawns.Add(patrol);
 
         logger.Info($"Added RUAF Hunt of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+    }
+    
+    private void AddRemnantHuntToMap(LocationBase location, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns, float chanceMod = 1)
+    {
+        var huntConfig = mapConfig.hunt.hunts["remnant"];
+
+        logger.Info($"Enabling Remnant hunt for {location.Name}.");
+
+        var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
+        var patrol = GenerateRemnantPatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : huntConfig.huntChance * chanceMod, false);
+
+        patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.01, 0.02) * 60;
+
+        patrol.BossZone = huntConfig.huntZones;
+        patrol.TriggerName = "botEvent";
+        patrol.TriggerId = "hunt";
+        patrol.ForceSpawn = true;
+
+        spawns.Add(patrol);
+
+        logger.Info($"Added Remnant Hunt of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
     }
 
     private void AddExUsecHuntToMap(LocationBase location, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
@@ -307,5 +354,41 @@ public class RUAFSpawnController(
         };
 
         return bossInfo;
+    }
+    
+    private BossLocationSpawn GenerateRemnantPatrol(int patrolSize, float chance, bool isPatrol = true)
+    {
+        var bossType = "remnantRifleman";
+        var followers = patrolSize - 1;
+
+        logger.Info($"Generating Remnant patrol of size {patrolSize}.");
+        
+
+        var bossInfo = new BossLocationSpawn
+        {
+            BossChance = chance,
+            BossDifficulty = "normal",
+            BossEscortAmount = followers.ToString(),
+            BossEscortDifficulty = "normal",
+            BossEscortType = "remnantRifleman",
+            BossName = bossType,
+            IsBossPlayer = false,
+            BossZone = string.Empty,
+            ForceSpawn = true,
+            IgnoreMaxBots = true,
+            IsRandomTimeSpawn = false,
+            SpawnMode = new[] { "regular", "pve" },
+            Supports = new List<BossSupport>(),
+            Time = -1,
+            TriggerId = string.Empty,
+            TriggerName = string.Empty
+        };//
+
+        return bossInfo;
+    }
+
+    public float GetRemnantChanceMod()
+    {
+        return RemnantChance;
     }
 }
