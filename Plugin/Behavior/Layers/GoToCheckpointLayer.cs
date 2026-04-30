@@ -89,7 +89,7 @@ namespace RUAFComeHome.Behavior.Layers
 
         public override bool IsCurrentActionEnding()
         {
-            return nextAction != lastAction;
+            return nextAction != lastAction || (CurrentAction.Type != nextAction && CurrentAction.Type != lastAction);
         }
     }
 }

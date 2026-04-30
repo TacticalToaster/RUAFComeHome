@@ -56,7 +56,7 @@ public class ZoneCheckpointConfig
 
 public class MapHuntConfig
 {
-    public bool enableHunt { get; set; }
+    public bool enableHunts { get; set; }
     public Dictionary<string, FactionHuntConfig> hunts { get; set; }
 }
 
@@ -65,6 +65,7 @@ public class FactionHuntConfig
     public int huntMin { get; set; }
     public int huntMax { get; set; }
     public string huntZones { get; set; }
+    public int huntChance { get; set; }
 }
 
 public class MapConfig

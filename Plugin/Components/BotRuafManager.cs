@@ -95,9 +95,10 @@ namespace RUAFComeHome.Components
         {
             var checkpoint = GetAssignedCheckpoint();
             var patrolPoint = checkpoint.Position;
-            var randomPoint = patrolPoint + (Vector3)UnityEngine.Random.insideUnitCircle * checkpoint.Radius;
+            var randomDisc = UnityEngine.Random.insideUnitCircle * checkpoint.Radius;
+            patrolPoint = patrolPoint + new Vector3(randomDisc.x, 0, randomDisc.y);
 
-            var searchData = new CoverSearchData(randomPoint, botOwner.CoverSearchInfo, CoverShootType.hide, (checkpoint.Radius * .5f) * (checkpoint.Radius * .5f), 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(botOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
+            var searchData = new CoverSearchData(patrolPoint, botOwner.CoverSearchInfo, CoverShootType.hide, (checkpoint.Radius * .5f) * (checkpoint.Radius * .5f), 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(botOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
             return botOwner.BotsGroup.CoverPointMaster.GetCoverPointMain(searchData, true);
         }
 

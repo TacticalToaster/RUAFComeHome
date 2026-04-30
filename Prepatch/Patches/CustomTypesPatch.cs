@@ -22,10 +22,12 @@ namespace RUAFComeHome.Prepatch
                 //"PtrlBirdEye",
 				"PmcBear",
                 "PmcUsec",
-                "ExURequest"
+                "ExURequest",
+                "StationaryWS",
+                "Utility peace"
             };
 
-            int ruafBrainInt = 24;//9;
+            int ruafBrainInt = 9;//24;//9;
 
             // rifleman
             var ruafBot = new CustomWildSpawnType(848400, "ruafRifleman", "RUAF", ruafBrainInt, true, true, false);
@@ -41,7 +43,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -62,7 +65,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .66f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -83,7 +87,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -104,7 +109,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -125,7 +131,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -146,7 +153,8 @@ namespace RUAFComeHome.Prepatch
                 Section = "RUAF",
                 BaseBrain = "PMC",
                 BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .5f
             };
 
             ruafBot.SetSAINSettings(settings);
@@ -154,6 +162,30 @@ namespace RUAFComeHome.Prepatch
             CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
 
             CustomWildSpawnTypeManager.AddSuitableGroup(new List<int> { 848400, 848401, 848402, 848403, 848404, 848405 });
+            
+            // remnant rifleman
+            ruafBot = new CustomWildSpawnType(848406, "remnantRifleman", "REMNANT", ruafBrainInt, true, true, false);
+
+            ruafBot.SetCountAsBossForStatistics(false);
+            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
+            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
+
+            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
+            {
+                Name = "Remnant Rifleman",
+                Description = "Russian SOF remnant that's equipped with specialized assault rifles.",
+                Section = "Remnant",
+                BaseBrain = "PMC",
+                BrainsToApply = ruafBrains,
+                LayersToRemove = ruafLayers,
+                DifficultyModifier = .7f
+            };
+
+            ruafBot.SetSAINSettings(settings);
+
+            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
+
+            CustomWildSpawnTypeManager.AddSuitableGroup(new List<int> { 848406 });
         }
 
     }

@@ -9,6 +9,7 @@ using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using System.Reflection;
+using SPTarkov.Server.Core.Models.Eft.Match;
 
 namespace RUAFComeHomeServer;
 
@@ -18,13 +19,14 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "RUAF Come Home";
     public override string Author { get; init; } = "TacticalToaster";
     public override List<string>? Contributors { get; init; } = new() { };
-    public override SemanticVersioning.Version Version { get; init; } = new(1, 0, 0);
+    public override SemanticVersioning.Version Version { get; init; } = new(1, 1, 0);
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
     {
-        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=1.0.0") },
-        { "com.wtt.commonlib", new SemanticVersioning.Range(">=2.0.0") }
+        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.0.0") },
+        { "com.wtt.commonlib", new SemanticVersioning.Range(">=2.0.0") },
+        { "com.wtt.contentbackport", new SemanticVersioning.Range(">=1.0.0") },
     };
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
@@ -59,6 +61,7 @@ public class RUAFModPreload : IOnLoad
 public class RUAFComeHome(
     MoreBotsServer.MoreBotsAPI moreBotsLib,
     MoreBotsServer.Services.MoreBotsCustomBotTypeService customBotTypeService,
+    MoreBotsServer.Services.MoreBotsCustomBotConfigService customBotConfigService,
     MoreBotsServer.Services.FactionService factionService,
     MoreBotsServer.Services.LoadoutService loadoutService,
     WTTServerCommonLib.WTTServerCommonLib commonLib,
@@ -74,7 +77,19 @@ public class RUAFComeHome(
             "ruafAutorifleman",
             "ruafGrenadier",
             "ruafMarksman",
-            "ruafMachinegunner"
+            "ruafMachinegunner",
+            "remnantRifleman"
+        };
+
+        var typeDictionary = new Dictionary<int, string>()
+        {
+            { 848400, "ruafRifleman" },
+            { 848401, "ruafRiflemanSenior" },
+            { 848402, "ruafAutorifleman" },
+            { 848403, "ruafGrenadier" },
+            { 848404, "ruafMarksman" },
+            { 848405, "ruafMachinegunner" },
+            { 848406, "remnantRifleman" },
         };
 
         var assembly = Assembly.GetExecutingAssembly();
@@ -86,17 +101,37 @@ public class RUAFComeHome(
         await loadoutService.LoadLoadoutsWithTemplate(assembly, "ruaf_standard");
 
         // Replace some values in the bot types
-        await customBotTypeService.LoadBotTypeReplace(Assembly.GetExecutingAssembly(), "ruaf_all", typeList);
+        await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_all", typeList);
 
         // Replace values per type based on files that correspond to the passed type list
-        await customBotTypeService.LoadBotTypeReplaceByTypes(Assembly.GetExecutingAssembly(), typeList);
+        await customBotTypeService.LoadBotTypeReplaceByTypes(assembly, typeList);
 
         // Add couturier mod related stuff
         if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.turbodestroyer.couturier"))
         {
             // Replace the appearance settings of the bots so they use couturier clothes
-            await customBotTypeService.LoadBotTypeReplace(Assembly.GetExecutingAssembly(), "ruaf_couturier", typeList);
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_couturier", typeList);
         }
+        
+        if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.wtt.contentbackport"))
+        {
+            // Replace the appearance settings of the bots so they use backport clothes and voices
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_backport", typeList);
+
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_backport_sgt",
+                new List<string>() { "ruafRiflemanSenior" });
+            
+            await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_backport_ballistic",
+                new List<string>() { "ruafMachinegunner" });
+        }
+        
+        await customBotTypeService.LoadBotTypeReplace(assembly, "ruaf_remnant",
+            new List<string>() { "remnantRifleman" });
+
+        await commonLib.CustomBotLoadoutService.CreateCustomBotLoadouts(assembly);
+        await customBotConfigService.LoadCustomBotConfigs(assembly);
+
+        customBotTypeService.AddCustomWildSpawnTypeNames(typeDictionary);
 
         // Add enemies based on factions
         factionService.AddEnemyByFaction(typeList, "savage");
@@ -118,9 +153,16 @@ public class RUAFComeHome(
         {
             factionService.AddWarnByFaction(typeList, "untar");
         }
+        
+        if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.blackdiv.tacticaltoaster"))
+        {
+            factionService.AddEnemyByFaction(typeList, "blackdiv");
+        }
+
+        await commonLib.CustomQuestService.CreateCustomQuests(assembly);
 
         // Use WTT to add locales
-        await commonLib.CustomLocaleService.CreateCustomLocales(Assembly.GetExecutingAssembly());
+        await commonLib.CustomLocaleService.CreateCustomLocales(assembly);
 
         // Add RUAF to spawns
         ruafSpawnController.AdjustAllRuafSpawns();
@@ -136,8 +178,7 @@ public class RUAFComeHomeLoadFaction(
 {
     public async Task OnLoad()
     {
-        // Create the new RUAF faction
-        factionService.Factions.Add("ruaf", new Faction()
+        var ruafFaction = new Faction()
         {
             Name = "ruaf",
             BotTypes =
@@ -148,8 +189,27 @@ public class RUAFComeHomeLoadFaction(
                 (WildSpawnType)848403,
                 (WildSpawnType)848404,
                 (WildSpawnType)848405
+            },
+            RevengeAfterRaids = true,
+            RevengeRaidAmount = 3
+        };
+        
+        var remnantFaction = new Faction()
+        {
+            Name = "remnant",
+            BotTypes =
+            {
+                (WildSpawnType)848406
             }
-        });
+        };
+        
+        // Create the new Remnant faction
+        factionService.Factions.Add("remnant", remnantFaction);
+        
+        ruafFaction.SubFactions.Add(remnantFaction);
+        
+        // Create the new RUAF faction
+        factionService.Factions.Add("ruaf", ruafFaction);
 
         await Task.CompletedTask;
     }
@@ -207,7 +267,7 @@ public class CustomStaticRouter : StaticRouter
     {
         return
         [
-            new RouteAction(
+            new RouteAction<EndLocalRaidRequestData>(
                 "/client/match/local/end",
                 async (
                     url,
@@ -215,8 +275,8 @@ public class CustomStaticRouter : StaticRouter
                     sessionID,
                     output
                 ) => {
-                    _ruafSpawnController.AdjustAllRuafSpawns();
-                    return await new ValueTask<object>(output ?? string.Empty);
+                    _ruafSpawnController.AdjustAllRuafSpawns(info, sessionID, output);
+                    return await new ValueTask<string>(output ?? string.Empty);
                 }
             )
         ];

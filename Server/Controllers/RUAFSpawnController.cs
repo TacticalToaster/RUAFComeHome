@@ -1,9 +1,15 @@
+using SPTarkov.Common.Extensions;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Json;
+using System.Reflection;
+using System.Text.Json;
+using MoreBotsServer.Services;
+using SPTarkov.Server.Core.Models.Eft.Match;
 
 namespace RUAFComeHomeServer.Controllers;
 
@@ -13,22 +19,41 @@ public class RUAFSpawnController(
     RandomUtil randomUtil,
     ConfigController configController,
     DatabaseService databaseService,
+    FactionService factionService,
     RUAFLogger logger,
     HttpResponseUtil httpResponse
 )
 {
+    public float RemnantChance = 1f;
+    
+    public void AdjustAllRuafSpawns(EndLocalRaidRequestData info, MongoId sessionId, string output)
+    {
+        var revenges = factionService.GetFactionsRevenges();
+        if (revenges.ContainsKey(info?.Results?.Profile?.Id ?? "") &&
+            revenges[info.Results.Profile.Id].Contains("ruaf"))
+            RemnantChance += 1f;
+        else
+        {
+            RemnantChance -= .5f;
+            if (RemnantChance < 1f) RemnantChance = 1f;
+        }
+        
+        AdjustAllRuafSpawns();
+    }
+    
     public void AdjustAllRuafSpawns()
     {
         try
         {
             var tables = databaseService.GetTables();
+            var locations = databaseService.GetLocations();
             var mainConfig = configController.ModConfig;
 
             foreach (var map in mainConfig.locations.Keys)
             {
                 logger.Info($"Adjusting RUAF spawns for {map}.");
 
-                if (!tables.Locations.GetDictionary().ContainsKey(map))
+                if (!locations.GetDictionary().ContainsKey(locations.GetMappedKey(map)))
                 {
                     logger.Info($"No location data found for {map}. Skipping RUAF spawn adjustment.");
                     continue;
@@ -38,24 +63,25 @@ public class RUAFSpawnController(
                 var patrolConfig = mapConfig.patrol;
                 var checkpointConfig = mapConfig.checkpoint;
                 var huntConfig = mapConfig.hunt;
-                var spawns = tables.Locations.GetDictionary()[map].Base.BossLocationSpawn;
+                var location = locations.GetDictionary()[locations.GetMappedKey(map)].Base;
+                var spawns = location.BossLocationSpawn;
 
                 // Remove existing RUAF spawns
                 spawns.RemoveAll(x => x.BossName.Contains("ruaf"));
 
                 if (patrolConfig.enablePatrols)
                 {
-                    AdjustPatrolSpawnsForMap(map, mapConfig, mainConfig, spawns);
+                    AdjustPatrolSpawnsForMap(location, mapConfig, mainConfig, spawns);
                 }
 
                 if (checkpointConfig.enableCheckpoints)
                 {
-                    AdjustCheckpointSpawnsForMap(map, mapConfig, mainConfig, spawns);
+                    AdjustCheckpointSpawnsForMap(location, mapConfig, mainConfig, spawns);
                 }
 
-                if (huntConfig.enableHunt)
+                if (huntConfig.enableHunts)
                 {
-                    AdjustHuntSpawnsForMap(map, mapConfig, mainConfig, spawns);
+                    AdjustHuntSpawnsForMap(location, mapConfig, mainConfig, spawns);
                 }
             }
         }
@@ -66,11 +92,11 @@ public class RUAFSpawnController(
         }
     }
 
-    private void AdjustPatrolSpawnsForMap(string map, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    private void AdjustPatrolSpawnsForMap(LocationBase location, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
     {
         var patrolConfig = mapConfig.patrol;
 
-        logger.Info($"Enabling RUAF patrols for {map}.");
+        logger.Info($"Enabling RUAF patrols for {location.Name}.");
         var validZones = new List<string>(patrolConfig.patrolZones);
 
         for (int i = 0; i < patrolConfig.patrolAmount; i++)
@@ -90,21 +116,21 @@ public class RUAFSpawnController(
 
             if (mainConfig.debug.spawnInstantlyAlways)
             {
-                logger.Info($"Instantly spawning RUAF patrol for {map}.");
+                logger.Info($"Instantly spawning RUAF patrol for {location.Name}.");
                 patrol.Time = -1;
             }
 
             spawns.Add(patrol);
 
-            logger.Info($"Added ({patrolConfig.patrolChance}% chance) RUAF patrol of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+            logger.Info($"Added ({patrolConfig.patrolChance}% chance) RUAF patrol of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
         }
     }
 
-    private void AdjustCheckpointSpawnsForMap(string map, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    private void AdjustCheckpointSpawnsForMap(LocationBase location, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
     {
         var checkpointConfig = mapConfig.checkpoint;
 
-        logger.Info($"Enabling RUAF checkpoint for {map}.");
+        logger.Info($"Enabling RUAF checkpoint for {location.Name}.");
         var validZones = new List<ZoneCheckpointConfig>(checkpointConfig.checkpointZones);
 
         for (int i = 0; i < checkpointConfig.checkpointAmount; i++)
@@ -126,62 +152,89 @@ public class RUAFSpawnController(
 
             if (mainConfig.debug.spawnInstantlyAlways)
             {
-                logger.Info($"Instantly spawning RUAF checkpoint for {map}.");
+                logger.Info($"Instantly spawning RUAF checkpoint for {location.Name}.");
                 patrol.Time = -1;
             }
 
             spawns.Add(patrol);
 
-            logger.Info($"Added ({checkpointZoneConfig.checkpointChance}% chance) RUAF checkpoint of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+            logger.Info($"Added ({checkpointZoneConfig.checkpointChance}% chance) RUAF checkpoint of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
         }
     }
 
-    private void AdjustHuntSpawnsForMap(string map, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    private void AdjustHuntSpawnsForMap(LocationBase location, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
     {
         if (mapConfig.hunt.hunts.ContainsKey("ruaf"))
         {
-            spawns.RemoveAll(x => x.TriggerId == "ruafHunt");
-            AddRuafHuntToMap(map, mapConfig, mainConfig, spawns);
+            spawns.RemoveAll(x => x.TriggerId == "hunt" && x.BossName.Contains("ruaf"));
+            AddRuafHuntToMap(location, mapConfig, mainConfig, spawns);
+        }
+        
+        if (mapConfig.hunt.hunts.ContainsKey("remnant"))
+        {
+            spawns.RemoveAll(x => x.TriggerId == "hunt" && x.BossName.Contains("remnant"));
+            AddRemnantHuntToMap(location, mapConfig, mainConfig, spawns, GetRemnantChanceMod());
         }
 
         if (mapConfig.hunt.hunts.ContainsKey("exUsec"))
         {
-            spawns.RemoveAll(x => x.TriggerId == "exUsecHunt");
-            AddExUsecHuntToMap(map, mapConfig, mainConfig, spawns);
+            spawns.RemoveAll(x => x.TriggerId == "hunt" && x.BossName.Contains("exUsec"));
+            AddExUsecHuntToMap(location, mapConfig, mainConfig, spawns);
         }
     }
 
-    private void AddRuafHuntToMap(string map, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    private void AddRuafHuntToMap(LocationBase location, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
     {
         var huntConfig = mapConfig.hunt.hunts["ruaf"];
 
-        logger.Info($"Enabling RUAF hunt for {map}.");
+        logger.Info($"Enabling RUAF hunt for {location.Name}.");
 
         var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
-        var patrol = GeneratePatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : 100, false);
+        var patrol = GeneratePatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : huntConfig.huntChance, false);
 
-        patrol.Time = -1;
+        patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.1, 0.9) * 60;
 
         patrol.BossZone = huntConfig.huntZones;
         patrol.TriggerName = "botEvent";
-        patrol.TriggerId = "ruafHunt";
+        patrol.TriggerId = "hunt";
         patrol.ForceSpawn = true;
 
         spawns.Add(patrol);
 
-        logger.Info($"Added RUAF Hunt of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+        logger.Info($"Added RUAF Hunt of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+    }
+    
+    private void AddRemnantHuntToMap(LocationBase location, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns, float chanceMod = 1)
+    {
+        var huntConfig = mapConfig.hunt.hunts["remnant"];
+
+        logger.Info($"Enabling Remnant hunt for {location.Name}.");
+
+        var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
+        var patrol = GenerateRemnantPatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : huntConfig.huntChance * chanceMod, false);
+
+        patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.01, 0.02) * 60;
+
+        patrol.BossZone = huntConfig.huntZones;
+        patrol.TriggerName = "botEvent";
+        patrol.TriggerId = "hunt";
+        patrol.ForceSpawn = true;
+
+        spawns.Add(patrol);
+
+        logger.Info($"Added Remnant Hunt of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
     }
 
-    private void AddExUsecHuntToMap(string map, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    private void AddExUsecHuntToMap(LocationBase location, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
     {
         var huntConfig = mapConfig.hunt.hunts["exUsec"];
 
-        logger.Info($"Enabling EXUSEC hunt for {map}.");
+        logger.Info($"Enabling EXUSEC hunt for {location.Name}.");
 
         var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
         var patrol = new BossLocationSpawn
         {
-            BossChance = 100,
+            BossChance = huntConfig.huntChance,
             BossDifficulty = "normal",
             BossEscortAmount = patrolSize.ToString(),
             BossEscortDifficulty = "normal",
@@ -190,7 +243,7 @@ public class RUAFSpawnController(
             IsBossPlayer = false,
             BossZone = string.Empty,
             ForceSpawn = false,
-            IgnoreMaxBots = true,
+            IgnoreMaxBots = false,
             IsRandomTimeSpawn = false,
             SpawnMode = new[] { "regular", "pve" },
             Supports = new List<BossSupport>(),
@@ -199,16 +252,16 @@ public class RUAFSpawnController(
             TriggerName = string.Empty
         };
 
-        patrol.Time = -1;
+        patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.1, 0.9) * 60;
 
         patrol.BossZone = huntConfig.huntZones;
         patrol.TriggerName = "botEvent";
-        patrol.TriggerId = "exUsecHunt";
+        patrol.TriggerId = "hunt";
         patrol.ForceSpawn = true;
 
         spawns.Add(patrol);
 
-        logger.Info($"Added EXUSEC Hunt of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+        logger.Info($"Added EXUSEC Hunt of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
     }
 
     private BossLocationSpawn GeneratePatrol(int patrolSize, float chance, bool isPatrol = true)
@@ -291,7 +344,7 @@ public class RUAFSpawnController(
             IsBossPlayer = false,
             BossZone = string.Empty,
             ForceSpawn = false,
-            IgnoreMaxBots = true,
+            IgnoreMaxBots = false,
             IsRandomTimeSpawn = false,
             SpawnMode = new[] { "regular", "pve" },
             Supports = supportsList,
@@ -301,5 +354,41 @@ public class RUAFSpawnController(
         };
 
         return bossInfo;
+    }
+    
+    private BossLocationSpawn GenerateRemnantPatrol(int patrolSize, float chance, bool isPatrol = true)
+    {
+        var bossType = "remnantRifleman";
+        var followers = patrolSize - 1;
+
+        logger.Info($"Generating Remnant patrol of size {patrolSize}.");
+        
+
+        var bossInfo = new BossLocationSpawn
+        {
+            BossChance = chance,
+            BossDifficulty = "normal",
+            BossEscortAmount = followers.ToString(),
+            BossEscortDifficulty = "normal",
+            BossEscortType = "remnantRifleman",
+            BossName = bossType,
+            IsBossPlayer = false,
+            BossZone = string.Empty,
+            ForceSpawn = true,
+            IgnoreMaxBots = true,
+            IsRandomTimeSpawn = false,
+            SpawnMode = new[] { "regular", "pve" },
+            Supports = new List<BossSupport>(),
+            Time = -1,
+            TriggerId = string.Empty,
+            TriggerName = string.Empty
+        };//
+
+        return bossInfo;
+    }
+
+    public float GetRemnantChanceMod()
+    {
+        return RemnantChance;
     }
 }

@@ -79,14 +79,26 @@
         "enableHunts": true,
         // List of hunts for different factions
         "hunts": {
-          // Specific hunts (only ruaf and exUsec are supported)
+          // Specific hunts (only ruaf, remnant, and exUsec are supported)
           "exUsec": {
             // Zones the hunt can spawn in
             "huntZones": "ZoneScavBase2,ZoneBigRocks",
             // Minimum members in the hunt
             "huntMin": 3,
             // Maximum members in the hunt
-            "huntMax": 4
+            "huntMax": 4,
+            // Chance the hunt will spawn
+            "huntChance": 30
+          },
+          "remnant": {
+            // Zones the hunt can spawn in
+            "huntZones": "ZoneMiniHouse,ZoneBigRocks",
+            // Minimum members in the hunt
+            "huntMin": 3,
+            // Maximum members in the hunt
+            "huntMax": 4,
+            // Chance the hunt will spawn
+            "huntChance": 10
           }
         }
       }
@@ -132,9 +144,16 @@
         "enableHunts": true,
         "hunts": {
           "exUsec": {
-            "huntZones": "ZoneOldAZS,ZoneFactorySide",
+            "huntZones": "ZoneCustoms,ZoneFactorySide",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneWade,ZoneBlockPost",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -163,7 +182,14 @@
           "exUsec": {
             "huntZones": "ZoneTrucks,ZonePowerStation",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneRoad",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -201,7 +227,14 @@
           "exUsec": {
             "huntZones": "ZoneMeteoStation,ZonePowerStation",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneRailWays",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -230,7 +263,14 @@
           "exUsec": {
             "huntZones": "ZoneColumn,ZoneHotel_1",
             "huntMin": 3,
-            "huntMax": 4
+            "huntMax": 4,
+            "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "ZoneCard1",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
@@ -259,7 +299,14 @@
           "ruaf": {
             "huntZones": "Zone_DestroyedHouse",
             "huntMin": 4,
-            "huntMax": 6
+            "huntMax": 6,
+            "huntChance": 30
+          },
+          "remnant": {
+            "huntZones": "Zone_DestroyedHouse",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 15
           }
         }
       }
