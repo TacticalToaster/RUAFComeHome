@@ -4,9 +4,9 @@
     // Enable or disable additional debug logs
     "logs": false,
     // Force patrols to spawn in every raid (as if patrolChance was 100%)
-    "spawnAlways": true,
+    "spawnAlways": false,
     // Force patrols to always spawn at the start of raids
-    "spawnInstantlyAlways": true
+    "spawnInstantlyAlways": false
   },
   // Settings for changing how patrols and their members are generated
   "patrols": {
@@ -98,7 +98,7 @@
             // Maximum members in the hunt
             "huntMax": 4,
             // Chance the hunt will spawn
-            "huntChance": 50
+            "huntChance": 10
           }
         }
       }
