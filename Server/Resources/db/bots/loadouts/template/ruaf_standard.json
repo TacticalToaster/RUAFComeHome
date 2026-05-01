@@ -10,6 +10,21 @@
         }
     },
     "ArmorVest": {
+      "6b45 vest": {
+        "id": "68948a95d8f2b85fb705e2a6",
+        "chance": 50,
+        "slots": {
+          "Front_plate": ["65573fa5655447403702a816"],
+          "Back_plate": ["65573fa5655447403702a816"],
+          "Left_side_plate": ["64afd81707e2cf40e903a316"],
+          "Right_side_plate": ["64afd81707e2cf40e903a316"],
+          "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+          "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+          "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+          "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+          "Collar": ["68a47ae8f9d424639c088230"]
+        }
+      },
       "6b13 emr": {
         "id": "5c0e53c886f7747fa54205c7",
         "chance": 100,
@@ -69,6 +84,51 @@
       "6sh112": {
         "id": "5929a2a086f7744f4b234d43",
         "chance": 100
+      },
+      "6b45 1": {
+        "id": "68948b118c57a8a52301d7ae",
+        "chance": 40,
+        "slots": {
+          "Front_plate": ["65573fa5655447403702a816"],
+          "Back_plate": ["65573fa5655447403702a816"],
+          "Left_side_plate": ["64afd81707e2cf40e903a316"],
+          "Right_side_plate": ["64afd81707e2cf40e903a316"],
+          "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+          "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+          "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+          "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+          "Collar": ["68a47ae8f9d424639c088230"]
+        }
+      },
+      "6b45 2": {
+        "id": "68948ad72c87773b9f06d73f",
+        "chance": 40,
+        "slots": {
+          "Front_plate": ["65573fa5655447403702a816"],
+          "Back_plate": ["65573fa5655447403702a816"],
+          "Left_side_plate": ["64afd81707e2cf40e903a316"],
+          "Right_side_plate": ["64afd81707e2cf40e903a316"],
+          "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+          "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+          "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+          "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+          "Collar": ["68a47ae8f9d424639c088230"]
+        }
+      },
+      "6b45 3": {
+        "id": "68948aebd8f2b85fb705e2b0",
+        "chance": 40,
+        "slots": {
+          "Front_plate": ["65573fa5655447403702a816"],
+          "Back_plate": ["65573fa5655447403702a816"],
+          "Left_side_plate": ["64afd81707e2cf40e903a316"],
+          "Right_side_plate": ["64afd81707e2cf40e903a316"],
+          "Soft_armor_front": ["68a47a76a920fa363a050bee"],
+          "Soft_armor_back": ["68a47a92c3f53a3898071382"],
+          "Soft_armor_left": ["68a47aae69e409f9e4094b65"],
+          "soft_armor_right": ["68a47acfa920fa363a050c1a"],
+          "Collar": ["68a47ae8f9d424639c088230"]
+        }
       }
     },
     "Headwear": {

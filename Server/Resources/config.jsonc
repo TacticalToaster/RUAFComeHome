@@ -282,7 +282,7 @@
         "patrolAmount": 2,
         "patrolMin": 4,
         "patrolMax": 7,
-        "patrolZones": [ "ZoneFactory", "ZoneCard1", "ZoneSW01" ],
+        "patrolZones": [ "Zone_DestroyedHouse" ],
         "patrolTimeMin": 300,
         "patrolTimeMax": 1800
       },

@@ -37,6 +37,8 @@ namespace RUAFComeHome.Behavior.Actions
                 BotOwner.SetPose(1);
             else
                 BotOwner.SetPose(0);
+            
+            BotOwner.GetPlayer.MovementContext.SetPatrol(true);
         }
 
         public override void Stop()
@@ -45,6 +47,7 @@ namespace RUAFComeHome.Behavior.Actions
             //Plugin.LogSource.LogInfo($"[{BotOwner.Profile.Nickname}] Stop Sitting at checkpoint.");
             //ruafManager.ShouldSwitchCover = true;
             sitStart = -1f;
+            BotOwner.GetPlayer.MovementContext.SetPatrol(false);
         }
 
         public override void Update(CustomLayer.ActionData data)
