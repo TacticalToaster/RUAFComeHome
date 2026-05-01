@@ -25,8 +25,15 @@ namespace RUAFComeHome.Behavior.Actions
         {
             ruafManager.UpdateGuardPoint();
             BotOwner.Memory.SetCoverPoints(ruafManager.guardPoint, "");
+            BotOwner.GetPlayer.MovementContext.SetPatrol(true);
 
             base.Start();
+        }
+
+        public override void Stop()
+        {
+            BotOwner.GetPlayer.MovementContext.SetPatrol(false);
+            base.Stop();
         }
 
         public override void Update(CustomLayer.ActionData data)

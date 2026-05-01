@@ -12,6 +12,6 @@ namespace RUAFComeHome
         public const string PreLoadGUID = "com.ruafcomehome.tacticaltoaster";
         public const string PluginName = "RUAFComeHome";
         public const string PreLoadName = "RUAFComeHome Prepatch";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
     }
 }
