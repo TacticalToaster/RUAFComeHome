@@ -195,7 +195,7 @@ public class RUAFSpawnController(
         patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.1, 0.9) * 60;
 
         patrol.BossZone = huntConfig.huntZones;
-        patrol.TriggerName = "botEvent";
+        patrol.TriggerName = string.Empty;
         patrol.TriggerId = "hunt";
         patrol.ForceSpawn = true;
 
@@ -216,7 +216,7 @@ public class RUAFSpawnController(
         patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.01, 0.02) * 60;
 
         patrol.BossZone = huntConfig.huntZones;
-        patrol.TriggerName = "botEvent";
+        patrol.TriggerName = string.Empty;
         patrol.TriggerId = "hunt";
         patrol.ForceSpawn = true;
 
@@ -255,7 +255,7 @@ public class RUAFSpawnController(
         patrol.Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.1, 0.9) * 60;
 
         patrol.BossZone = huntConfig.huntZones;
-        patrol.TriggerName = "botEvent";
+        patrol.TriggerName = string.Empty;
         patrol.TriggerId = "hunt";
         patrol.ForceSpawn = true;
 
