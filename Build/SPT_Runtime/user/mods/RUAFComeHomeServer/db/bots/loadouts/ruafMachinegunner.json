@@ -1,0 +1,94 @@
+{
+  "equipment": {
+    "FirstPrimaryWeapon": {
+      "pkm": {
+        "id": "64637076203536ad5600c990",
+        "chance": 50,
+        "slots": {
+          "mod_bipod": [ "6464d870bb2c580352070cc4" ],
+          "mod_pistolgrip": [ "646371779f5f0ea59a04c204" ],
+          "mod_barrel": [ "pkm_barrels" ],
+          "mod_magazine": [ "646372518610c40fc20204e8" ],
+          "mod_stock": [ "646371a9f2404ab67905c8e6" ],
+          "mod_sight_rear": [ "6492fb8253acae0af00a29b6" ]
+        }
+      },
+      "pkp": {
+        "id": "64ca3d3954fc657e230529cc",
+        "chance": 40,
+        "slots": {
+          "mod_bipod": [ "6464d870bb2c580352070cc4" ],
+          "mod_pistolgrip": [ "64cbad529f7cf7f75c077fd5" ],
+          "mod_barrel": [ "pkm_barrels" ],
+          "mod_magazine": [ "646372518610c40fc20204e8" ],
+          "mod_stock": [ "646371a9f2404ab67905c8e6", "6492e3a97df7d749100e29ee" ],
+          "mod_sight_rear": [ "6492fb8253acae0af00a29b6" ],
+          "mod_scope": [ "dovetail_optics", "dovetail_mid" ]
+        }
+      }
+    },
+    "Holster": {
+        "grach": {
+            "chance": 100
+        }
+    },
+    "ArmorVest": {
+      "6b13 emr": {
+        "chance": 100
+      },
+      "6b23 emr": {
+        "chance": 100
+      },
+      "6b43": {
+        "chance": 300
+      }
+    },
+    "TacticalVest": {
+      "alpha vest": {
+        "chance": 50
+      },
+      "tv-109": {
+        "chance": 100
+      },
+      "6sh112": {
+        "chance": 0
+      }
+    },
+    "Headwear": {
+      "6b47 emr": {
+        "chance": 100
+      },
+      "6b47": {
+        "chance": 75
+      },
+      "uxpro": {
+        "chance": 30
+      },
+      "beanie": {
+        "chance": 30
+      }
+    },
+    "Eyewear": {
+      "tactical glasses": {
+        "chance": 30
+      },
+      "dundukk orange": {
+        "chance": 30
+      }
+    },
+    "FaceCover": {
+      "balaclava": {
+        "chance": 30
+      },
+      "cold fear": {
+        "chance": 30
+      }
+    }
+  },
+  "weapons": {
+    
+  },
+  "categories": {
+
+  }
+}

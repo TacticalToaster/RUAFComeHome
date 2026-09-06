@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.10.34928.147
+# Visual Studio Version 18
+VisualStudioVersion = 18.8.12105.206 oobstable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prepatch", "Prepatch\Prepatch.csproj", "{27FE9EA3-B3CC-42BB-F737-5BC8A57D5D91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin", "Plugin\Plugin.csproj", "{2CDFD586-355F-346C-92BF-961D4783A12E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RUAFComeHome", "Server\RUAFComeHome.csproj", "{421EF095-4A41-D8D7-8751-D72F2FD77D5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2CDFD586-355F-346C-92BF-961D4783A12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CDFD586-355F-346C-92BF-961D4783A12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CDFD586-355F-346C-92BF-961D4783A12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{421EF095-4A41-D8D7-8751-D72F2FD77D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421EF095-4A41-D8D7-8751-D72F2FD77D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421EF095-4A41-D8D7-8751-D72F2FD77D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421EF095-4A41-D8D7-8751-D72F2FD77D5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

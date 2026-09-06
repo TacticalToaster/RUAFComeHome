@@ -1,0 +1,273 @@
+{
+    "equipment": {
+        
+    },
+    "weapons": {
+        
+    },
+    "categories": {
+        "ak74_mags_standard": {
+            "ak74 mag 30": {
+                "id": "55d480c04bdc2d1d4e8b456a"
+            },
+            "ak12 early mag": {
+                "id": "649ec30cb013f04a700e60fb"
+            },
+            "ak12 mag": {
+                "id": "5bed61680db834001d2c45ab"
+            }
+        },
+        "ak74_mags_auto": {
+            "rpk16 95": {
+                "id": "5bed625c0db834001c062946"
+            },
+            "rpk74m 45": {
+                "id": "55d481904bdc2d8c2f8b456a"
+            }
+        },
+        "buffer_stocks": {
+            "ak12 stock": {
+                "id": "5beec8c20db834001d2c465c"
+            }
+        },
+        "dovetail_optics": {
+            "pk1 obzor": {
+                "id": "618a5d5852ecee1505530b2a",
+                "chance": 10,
+                "children": {}
+            }
+        },
+        "dovetail_mid":{
+            "usp1": {
+                "id": "5cf638cbd7f00c06595bc936",
+                "chance": 10,
+                "slots": {
+                    "mod_tactical": ["5cf639aad7f00c065703d455"]
+                }
+            },
+            "1p78 mount": {
+                "id": "618a75c9a3884f56c957ca1b",
+                "chance": 10,
+                "children": {
+                    "1p78": {
+                        "id": "618a75f0bd321d49084cd399",
+                        "chance": 10,
+                        "slots": {
+                            "mod_tactical": ["618a760e526131765025aae3"]
+                        }
+                    }
+                },
+                "slots": {
+                    "mod_scope": ["1p78"]
+                }
+            }
+        },
+        "dovetail_long": {
+            "1p59 mount": {
+                "id": "5d0a29ead7ad1a0026013f27",
+                "chance": 10,
+                "children": {
+                    "1p59": {
+                        "id": "5d0a3a58d7ad1a669c15ca14",
+                        "chance": 10,
+                        "slots": {
+                            "mod_tactical": ["5d0b5cd3d7ad1a3fe32ad263"]
+                        }
+                    }
+                },
+                "slots": {
+                    "mod_scope": ["1p59"]
+                }
+            }
+        },
+        "dovetail_pso": {
+            "pso1m2": {
+                "id": "5c82343a2e221644f31c0611",
+                "chance": 10,
+                "slots": {
+                    "mod_tactical": ["57f3a5ae2459772b0e0bf19e"]
+                }
+            }
+        },
+        "scopes_mid": {
+            "elcan": {
+                "id": "57ac965c24597706be5f975c",
+                "chance": 10,
+                "children": {}
+            },
+            "tan elcan": {
+                "id": "57aca93d2459771f2c7e26db",
+                "chance": 10,
+                "children": {}
+            },
+            "ta51 mount": {
+                "id": "59db7eed86f77461f8380365",
+                "chance": 20,
+                "children": {},
+                "slots": {
+                    "mod_scope": ["optics_acog"]
+                }
+            }
+        },
+        "scopes_long": {
+            "geissele mount": {
+                "id": "618b9643526131765025ab35",
+                "chance": 10,
+                "children": {
+                    "ring cap": {
+                        "id": "618b9671d14d6d5ab879c5ea",
+                        "chance": 10,
+                        "children": {}
+                    }
+                },
+                "slots": {
+                    "mod_scope": ["optics_30"],
+                    "mod_mount": ["618b9671d14d6d5ab879c5ea"]
+                }
+            },
+            "nightforce mount": {
+                "id": "5aa66a9be5b5b0214e506e89",
+                "chance": 10,
+                "children": {},
+                "slots": {
+                    "mod_scope": ["optics_34"]
+                }
+            }
+        },
+        "optics_acog":{
+            "acog" : {
+                "id": "5c05293e0db83400232fff80",
+                "chance": 20,
+                "children": {}
+            },
+            "tan acog": {
+                "id": "5c052a900db834001a66acbd",
+                "chance": 20,
+                "children": {}
+            },
+            "weird acog": {
+                "id": "59db7e1086f77448be30ddf3",
+                "chance": 15,
+                "children": {}
+            }
+        },
+        "optics_30": {
+            "vudu": {
+                "id": "5b3b99475acfc432ff4dcbee",
+                "chance": 20,
+                "children": {}
+            },
+            "leupold": {
+                "id": "5a37cb10c4a282329a73b4e7",
+                "chance": 20,
+                "children": {}
+            },
+            "march": {
+                "id": "57c5ac0824597754771e88a9",
+                "chance": 20,
+                "children": {}
+            }
+        },
+        "optics_34": {
+            "atacr": {
+                "id": "5aa66be6e5b5b0214e506e97",
+                "chance": 20,
+                "children": {}
+            },
+            "pmii": {
+                "id": "61714eec290d254f5e6b2ffc",
+                "chance": 20,
+                "children": {}
+            }
+        },
+        "sights": {
+            "krechet": {
+                "id": "609a63b6e2ff132951242d09",
+                "chance": 50,
+                "children": {}
+            },
+            "pk-120": {
+                "id": "5c0505e00db834001b735073",
+                "chance": 70,
+                "children": {}
+            }
+        },
+        "compact_sights": {
+
+        },
+        "grips": {
+            "p2 grip": {
+                "id": "64806bdd26c80811d408d37a",
+                "chance": 40,
+                "children": {}
+            },
+            "rk5": {
+                "id": "5c1bc7432e221602b412949d",
+                "chance": 40,
+                "children": {}
+            },
+            "rk1": {
+                "id": "5c1bc5612e221602b5429350"
+            }
+        },
+        "grips_mlok": {
+            "magpul afg mlok tan": {
+                "id": "57cffcd624597763133760c5"
+            },
+            "dd vert mlok tan": {
+                "id": "651a8e529829226ceb67c319"
+            },
+            "bcm mlok blk": {
+                "id": "665d5d9e338229cfd6078da1"
+            }
+        },
+        "lasers_common": {
+            "peq15": {
+                "id": "544909bb4bdc2d6f028b4577"
+            },
+            "la5b": {
+                "id": "5c06595c0db834001a66af6c"
+            }
+        },
+        "lasers_top": {
+            "mawl": {
+                "id": "644a3df63b0b6f03e101e065"
+            }
+        },
+        "lasers_side": {
+
+        },
+        "lights": {
+            "wmx": {
+                "id": "626becf9582c3e319310b837"
+            },
+            "25mm": {
+                "id": "57d17e212459775a1179a0f5",
+                "slots": {
+                    "mod_flashlight": ["lights_25"]
+                }
+            }
+        },
+        "lights_25" : {
+            "ultrafire wf": {
+                "id": "57d17c5e2459775a5c57d17d"
+            }
+        },
+        "plates_side": {
+            "sapi side": {
+                "id": "6557458f83942d705f0c4962"
+            },
+            "esapi side": {
+                "id": "64afdb577bb3bfe8fe03fd1d"
+            }
+        },
+        "plates": {
+            "sapi": {
+                "id": "655746010177119f4a097ff7"
+            },
+            "esapi": {
+                "id": "64afdcb83efdfea28601d041"
+            }
+        }
+    }
+}

@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text.Json;
 using MoreBotsServer.Services;
 using SPTarkov.Server.Core.Models.Eft.Match;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace RUAFComeHomeServer.Controllers;
 
@@ -18,42 +19,52 @@ public class RUAFSpawnController(
     JsonUtil jsonUtil,
     RandomUtil randomUtil,
     ConfigController configController,
-    DatabaseService databaseService,
+    LocationTable locationTable,
     FactionService factionService,
     RUAFLogger logger,
     HttpResponseUtil httpResponse
 )
 {
     public float RemnantChance = 1f;
-    
-    public void AdjustAllRuafSpawns(EndLocalRaidRequestData info, MongoId sessionId, string output)
+
+    public async Task AdjustAllRuafSpawns(
+        EndLocalRaidRequestData info,
+        MongoId sessionId,
+        string output)
     {
-        var revenges = factionService.GetFactionsRevenges();
-        if (revenges.ContainsKey(info?.Results?.Profile?.Id ?? "") &&
-            revenges[info.Results.Profile.Id].Contains("ruaf"))
+        var revenges = await factionService.GetFactionsRevenges();
+
+        var profileId = info?.Results?.Profile?.Id;
+
+        if (!string.IsNullOrEmpty(profileId) &&
+            revenges.TryGetValue(profileId, out var factionRevenges) &&
+            factionRevenges.Contains("ruaf"))
+        {
             RemnantChance += 1f;
+        }
         else
         {
-            RemnantChance -= .5f;
-            if (RemnantChance < 1f) RemnantChance = 1f;
+            RemnantChance -= 0.5f;
+            if (RemnantChance < 1f)
+            {
+                RemnantChance = 1f;
+            }
         }
-        
+
         AdjustAllRuafSpawns();
     }
-    
+
     public void AdjustAllRuafSpawns()
     {
         try
         {
-            var tables = databaseService.GetTables();
-            var locations = databaseService.GetLocations();
             var mainConfig = configController.ModConfig;
 
             foreach (var map in mainConfig.locations.Keys)
             {
                 logger.Info($"Adjusting RUAF spawns for {map}.");
 
-                if (!locations.GetDictionary().ContainsKey(locations.GetMappedKey(map)))
+                if (!locationTable.GetDictionary().ContainsKey(locationTable.GetMappedKey(map)))
                 {
                     logger.Info($"No location data found for {map}. Skipping RUAF spawn adjustment.");
                     continue;
@@ -63,7 +74,7 @@ public class RUAFSpawnController(
                 var patrolConfig = mapConfig.patrol;
                 var checkpointConfig = mapConfig.checkpoint;
                 var huntConfig = mapConfig.hunt;
-                var location = locations.GetDictionary()[locations.GetMappedKey(map)].Base;
+                var location = locationTable.GetDictionary()[locationTable.GetMappedKey(map)].Base;
                 var spawns = location.BossLocationSpawn;
 
                 // Remove existing RUAF spawns

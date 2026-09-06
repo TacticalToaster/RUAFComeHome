@@ -1,5 +1,6 @@
 ﻿using DrakiaXYZ.BigBrain.Brains;
 using EFT;
+using EFT.AssetsManager;
 using EFT.InputSystem;
 using RUAFComeHome.Behavior.Layers;
 using SPT.Reflection.Patching;

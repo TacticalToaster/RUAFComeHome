@@ -1,8 +1,9 @@
 ﻿using Comfort.Common;
 using EFT;
+using EFT.Game.Spawning;
+using RUAFComeHome.Models;
 using SPT.SinglePlayer.Utils.InRaid;
 using System.Diagnostics;
-using RUAFComeHome.Models;
 using UnityEngine;
 
 namespace RUAFComeHome.Components
@@ -98,7 +99,7 @@ namespace RUAFComeHome.Components
             var randomDisc = UnityEngine.Random.insideUnitCircle * checkpoint.Radius;
             patrolPoint = patrolPoint + new Vector3(randomDisc.x, 0, randomDisc.y);
 
-            var searchData = new CoverSearchData(patrolPoint, botOwner.CoverSearchInfo, CoverShootType.hide, (checkpoint.Radius * .5f) * (checkpoint.Radius * .5f), 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(botOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
+            var searchData = new CoverSearchData(patrolPoint, botOwner.CoverSearchInfo, CoverShootType.hide, (checkpoint.Radius * .5f) * (checkpoint.Radius * .5f), 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceData(botOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
             return botOwner.BotsGroup.CoverPointMaster.GetCoverPointMain(searchData, true);
         }
 

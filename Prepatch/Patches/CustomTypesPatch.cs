@@ -1,192 +1,83 @@
-﻿using BepInEx.Logging;
-using Mono.Cecil;
+﻿using Mono.Cecil;
 using MoreBotsAPI;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 namespace RUAFComeHome.Prepatch
 {
     public static class WildSpawnTypePatch
     {
-        public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll" };
+        private const int BaseBrainType = 9;
+
+        private const int RiflemanId = 848400;
+        private const int SeniorRiflemanId = 848401;
+        private const int AutoriflemanId = 848402;
+        private const int GrenadierId = 848403;
+        private const int MarksmanId = 848404;
+        private const int MachinegunnerId = 848405;
+        private const int RemnantRiflemanId = 848406;
+
+        private static readonly List<int> ExcludedDifficulties = new()
+        {
+            0,
+            2,
+            3
+        };
+
+        private static readonly List<int> RuafGroup = new()
+        {
+            RiflemanId,
+            SeniorRiflemanId,
+            AutoriflemanId,
+            GrenadierId,
+            MarksmanId,
+            MachinegunnerId
+        };
+
+        private static readonly List<int> RemnantGroup = new()
+        {
+            RemnantRiflemanId
+        };
+
+        public static IEnumerable<string> TargetDLLs { get; } = new[]
+        {
+            "Assembly-CSharp.dll"
+        };
 
         public static void Patch(ref AssemblyDefinition assembly)
         {
-            var ruafBrains = new List<string>() { "PMC", "ExUsec" };
-            var ruafLayers = new List<string>() {
-                "Request",
-                //"FightReqNull",
-                //"PeacecReqNull",
-                "KnightFight",
-                //"PtrlBirdEye",
-				"PmcBear",
-                "PmcUsec",
-                "ExURequest",
-                "StationaryWS",
-                "Utility peace"
-            };
+            RegisterBot(assembly, RiflemanId, "ruafRifleman", "RUAF");
+            RegisterBot(assembly, SeniorRiflemanId, "ruafRiflemanSenior", "RUAF");
+            RegisterBot(assembly, AutoriflemanId, "ruafAutorifleman", "RUAF");
+            RegisterBot(assembly, GrenadierId, "ruafGrenadier", "RUAF");
+            RegisterBot(assembly, MarksmanId, "ruafMarksman", "RUAF");
+            RegisterBot(assembly, MachinegunnerId, "ruafMachinegunner", "RUAF");
 
-            int ruafBrainInt = 9;//24;//9;
+            RegisterBot(assembly, RemnantRiflemanId, "remnantRifleman", "REMNANT");
 
-            // rifleman
-            var ruafBot = new CustomWildSpawnType(848400, "ruafRifleman", "RUAF", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            SAINSettings settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "RUAF Rifleman",
-                Description = "A regular rifleman.",
-                Section = "RUAF",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .5f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            // senior rifleman
-            ruafBot = new CustomWildSpawnType(848401, "ruafRiflemanSenior", "RUAF", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "RUAF Senior Rifleman",
-                Description = "A NCO rifleman with better rifles.",
-                Section = "RUAF",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .66f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            // autorifleman
-            ruafBot = new CustomWildSpawnType(848402, "ruafAutorifleman", "RUAF", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "RUAF Autorifleman",
-                Description = "A regular equipped with a SAW/LMG.",
-                Section = "RUAF",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .5f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            // grenadier
-            ruafBot = new CustomWildSpawnType(848403, "ruafGrenadier", "RUAF", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "RUAF Grenadier",
-                Description = "A grenadier equipped with a grenade launcher.",
-                Section = "RUAF",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .5f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            // marksman
-            ruafBot = new CustomWildSpawnType(848404, "ruafMarksman", "RUAF", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "RUAF Marksman",
-                Description = "A marksman equipped with a DMR.",
-                Section = "RUAF",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .5f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            // machinegunner
-            ruafBot = new CustomWildSpawnType(848405, "ruafMachinegunner", "RUAF", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "RUAF Machinegunner",
-                Description = "A machinegunner equipped with a MMG.",
-                Section = "RUAF",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .5f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            CustomWildSpawnTypeManager.AddSuitableGroup(new List<int> { 848400, 848401, 848402, 848403, 848404, 848405 });
-            
-            // remnant rifleman
-            ruafBot = new CustomWildSpawnType(848406, "remnantRifleman", "REMNANT", ruafBrainInt, true, true, false);
-
-            ruafBot.SetCountAsBossForStatistics(false);
-            ruafBot.SetShouldUseFenceNoBossAttack(false, false);
-            ruafBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(ruafBot.WildSpawnTypeValue)
-            {
-                Name = "Remnant Rifleman",
-                Description = "Russian SOF remnant that's equipped with specialized assault rifles.",
-                Section = "Remnant",
-                BaseBrain = "PMC",
-                BrainsToApply = ruafBrains,
-                LayersToRemove = ruafLayers,
-                DifficultyModifier = .7f
-            };
-
-            ruafBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(ruafBot, assembly);
-
-            CustomWildSpawnTypeManager.AddSuitableGroup(new List<int> { 848406 });
+            CustomWildSpawnTypeManager.AddSuitableGroup(RuafGroup);
+            CustomWildSpawnTypeManager.AddSuitableGroup(RemnantGroup);
         }
 
+        private static void RegisterBot(
+            AssemblyDefinition assembly,
+            int id,
+            string botDbKey,
+            string role)
+        {
+            var bot = new CustomWildSpawnType(
+                id,
+                botDbKey,
+                role,
+                BaseBrainType,
+                true,
+                true,
+                false);
+
+            bot.SetCountAsBossForStatistics(false);
+            bot.SetShouldUseFenceNoBossAttack(false, false);
+            bot.SetExcludedDifficulties(ExcludedDifficulties);
+
+            CustomWildSpawnTypeManager.RegisterWildSpawnType(bot, assembly);
+        }
     }
 }

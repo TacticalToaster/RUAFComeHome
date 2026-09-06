@@ -1,0 +1,47 @@
+{
+    "equipment": {},
+    "weapons": {},
+    "categories": {
+        "ak12_handguards": {
+            "ak12 handguard": {
+                "id": "649ec127c93611967b034957",
+                "slots": {
+                    "mod_foregrip": [
+                        "grips"
+                    ]
+                }
+            }
+        },
+        "ak12_dustcovers": {
+            "ak12 dustcover": {
+                "id": "649ec2f3961514b22506b111",
+                "slots": {
+                    "mod_scope": [
+                        "sights"
+                    ],
+                    "mod_sight_rear": [
+                        "ak12_rear_sights"
+                    ]
+                }
+            }
+        },
+        "ak12_rear_sights": {
+            "ak12 rear sight": {
+                "id": "649ec2da59cbb3c813042dca",
+                "slots": {
+                    "mod_sight_rear": [
+                        "649ec2cec93611967b03495e"
+                    ]
+                }
+            }
+        },
+        "ak12_stocks_special": {
+            "ak12 buffer": {
+                "id": "649ec87d8007560a9001ab36",
+                "slots": {
+                    "mod_stock": ["buffer_stocks"]
+                }
+            }
+        }
+    }
+}

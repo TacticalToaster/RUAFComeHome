@@ -1,0 +1,47 @@
+{
+    "equipment": {},
+    "weapons": {},
+    "categories": {
+        "rpk16_dustcover": {
+            "rpk16_dustcover": {
+                "id": "5beec91a0db834001961942d",
+                "children": {
+                    "rpk16 rear sight base": {
+                        "id": "5beec9450db83400970084fd",
+                        "slots": {
+                            "mod_sight_rear": ["5bf3f59f0db834001a6fa060"]
+                        }
+                    }
+                },
+                "slots": {
+                    "mod_scope": [
+                        "sights"
+                    ],
+                    "mod_sight_rear": [
+                        "rpk16 rear sight base"
+                    ]
+                }
+            }
+        },
+        "rpk16_long_barrel": {
+            "rpk16_long_barrel": {
+                "id": "5beec2820db834001b095426",
+                "slots": {
+                    "mod_muzzle": [
+                        "5beec3420db834001b095429"
+                    ]
+                }
+            }
+        },
+        "rpk16_handguard": {
+            "rpk16_handguard": {
+                "id": "5beec3e30db8340019619424",
+                "slots": {
+                    "mod_foregrip": [
+                        "grips"
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "equipment": {},
+    "weapons": {},
+    "categories": {
+        "ak74m_gas_block":{
+            "ak74m gas block": {
+                "id": "59c6633186f7740cf0493bb9",
+                "slots": {
+                    "mod_handguard": ["ak74m_handguards"]
+                }
+            }
+        },
+        "ak74m_handguards": {
+            "ak74m handguard": {
+                "id": "5648b1504bdc2d9d488b4584"
+            },
+            "ak100 handguard": {
+                "id": "5cbda392ae92155f3c17c39f",
+                "slots": {
+                    "mod_foregrip": [
+                        "grips"
+                    ]
+                }
+            }
+        },
+        "ak74m_dustcovers": {
+            "ak74m dustcover": {
+                "id": "5ac50da15acfc4001718d287"
+            },
+            "bastion dustcover": {
+                "id": "5d2c76ed48f03532f2136169",
+                "slots": {
+                    "mod_scope": [
+                        "sights"
+                    ]
+                }
+            }
+        },
+        "ak74m_stocks_special": {
+            "ak74m stock": {
+                "id": "5ac50c185acfc400163398d4"
+            },
+            "ak12 buffer": {
+                "id": "649ec87d8007560a9001ab36",
+                "slots": {
+                    "mod_stock": ["buffer_stocks"]
+                }
+            }
+        }
+    }
+}

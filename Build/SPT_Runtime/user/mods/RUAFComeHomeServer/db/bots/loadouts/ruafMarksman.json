@@ -1,0 +1,83 @@
+{
+  "equipment": {
+    "FirstPrimaryWeapon": {
+      "svds": {
+        "id": "5c46fbd72e2216398b5a8c9c",
+        "chance": 50,
+        "slots": {
+          "mod_pistol_grip": [ "5c471be12e221602b66cd9ac" ],
+          "mod_barrel": [ "svds_barrels" ],
+          "mod_magazine": [ "5c471c442e221602b542a6f8", "5c88f24b2e22160bc12c69a6" ],
+          "mod_stock": [ "5c471b5d2e221602b21d4e14" ],
+          "mod_reciever": [ "5c471bd12e221602b4129c3a" ],
+          "mod_mount_000": [ "dovetail_long" ],
+          "mod_mount_002": [ "dovetail_pso" ],
+          "mod_mount_001": [ "svds_upper_band" ]
+        }
+      }
+    },
+    "Holster": {
+        "grach": {
+            "chance": 100
+        }
+    },
+    "ArmorVest": {
+      "6b13 emr": {
+        "chance": 100
+      },
+      "6b23 emr": {
+        "chance": 100
+      },
+      "6b43": {
+        "chance": 0
+      }
+    },
+    "TacticalVest": {
+      "alpha vest": {
+        "chance": 0
+      },
+      "tv-109": {
+        "chance": 100
+      },
+      "6sh112": {
+        "chance": 170
+      }
+    },
+    "Headwear": {
+      "6b47 emr": {
+        "chance": 100
+      },
+      "6b47": {
+        "chance": 0
+      },
+      "uxpro": {
+        "chance": 50
+      },
+      "beanie": {
+        "chance": 50
+      }
+    },
+    "Eyewear": {
+      "tactical glasses": {
+        "chance": 30
+      },
+      "dundukk orange": {
+        "chance": 30
+      }
+    },
+    "FaceCover": {
+      "balaclava": {
+        "chance": 30
+      },
+      "cold fear": {
+        "chance": 30
+      }
+    }
+  },
+  "weapons": {
+    
+  },
+  "categories": {
+
+  }
+}

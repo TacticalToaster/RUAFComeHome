@@ -15,16 +15,16 @@ namespace RUAFComeHome.Behavior.Actions
     internal class SitAtCheckpoint : CustomLogic
     {
         protected BotRuafManager ruafManager { get; private set; }
-        private GClass278 holdPosition;
-        private GClass395 baseSteeringLogic;
+        private HoldPosition holdPosition;
+        private LookAround baseSteeringLogic;
         private float sitStart = -1f;
         private float sitDuration = 0f;
 
         public SitAtCheckpoint(BotOwner botOwner) : base(botOwner)
         {
             ruafManager = botOwner.GetOrAddRuafManager();
-            holdPosition = new GClass278(BotOwner);
-            baseSteeringLogic = new GClass395();
+            holdPosition = new HoldPosition(BotOwner);
+            baseSteeringLogic = new LookAround();
         }
 
         public override void Start()
@@ -33,7 +33,7 @@ namespace RUAFComeHome.Behavior.Actions
             sitStart = Time.time;
             sitDuration = UnityEngine.Random.Range(10f, 30f);
 
-            if (GClass856.IsTrue100(50))
+            if (MyExtensions.IsTrue100(50))
                 BotOwner.SetPose(1);
             else
                 BotOwner.SetPose(0);

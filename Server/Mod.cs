@@ -10,30 +10,31 @@ using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using System.Reflection;
 using SPTarkov.Server.Core.Models.Eft.Match;
+using SPTarkov.Server.Core.Helpers.Server;
 
 namespace RUAFComeHomeServer;
 
-public record ModMetadata : AbstractModMetadata
+public record ModMetadata : IModMetadata
 {
-    public override string ModGuid { get; init; } = "com.ruafcomehome.tacticaltoaster";
-    public override string Name { get; init; } = "RUAF Come Home";
-    public override string Author { get; init; } = "TacticalToaster";
-    public override List<string>? Contributors { get; init; } = new() { };
-    public override SemanticVersioning.Version Version { get; init; } = new(1, 1, 2);
-    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
-    public override List<string>? Incompatibilities { get; init; }
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
+    public string ModGuid { get; init; } = "com.ruafcomehome.tacticaltoaster";
+    public string Name { get; init; } = "RUAF Come Home";
+    public string Author { get; init; } = "TacticalToaster";
+    public List<string>? Contributors { get; init; } = new() { };
+    public SemanticVersioning.Version Version { get; init; } = new(1, 2, 0);
+    public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.5");
+    public List<string>? Incompatibilities { get; init; }
+    public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
     {
-        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.0.0") },
-        { "com.wtt.commonlib", new SemanticVersioning.Range(">=2.0.0") },
-        { "com.wtt.contentbackport", new SemanticVersioning.Range(">=1.0.0") },
+        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.1.0") },
+        { "com.wtt.commonlib", new SemanticVersioning.Range(">=3.0.0") },
+        { "com.wtt.contentbackport", new SemanticVersioning.Range(">=2.0.0") },
     };
-    public override string? Url { get; init; }
-    public override bool? IsBundleMod { get; init; }
-    public override string License { get; init; } = "MIT";
+    public string? Url { get; init; }
+    public bool HasPrepatcher { get; init; }
+    public string License { get; init; } = "MIT";
 }
 
-[Injectable(TypePriority = OnLoadOrder.PreSptModLoader + 1)]
+[Injectable(TypePriority = OnLoadOrder.Preload + 1)]
 public class RUAFModPreload : IOnLoad
 {
     public static MainConfig ModConfig = new();
@@ -47,7 +48,7 @@ public class RUAFModPreload : IOnLoad
         _modHelper = modHelper;
     }
 
-    Task IOnLoad.OnLoad()
+    Task IOnLoad.OnLoadAsync(CancellationToken cancellationToken)
     {
         var pathToMod = _modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
 
@@ -69,7 +70,7 @@ public class RUAFComeHome(
     RUAFSpawnController ruafSpawnController
 ) : IOnLoad
 {
-    public async Task OnLoad()
+    public async Task OnLoadAsync(CancellationToken cancellationToken)
     {
         var typeList = new List<string> {
             "ruafRifleman",
@@ -176,7 +177,7 @@ public class RUAFComeHomeLoadFaction(
     MoreBotsServer.Services.FactionService factionService
 ) : IOnLoad
 {
-    public async Task OnLoad()
+    public async Task OnLoadAsync(CancellationToken cancellationToken)
     {
         var ruafFaction = new Faction()
         {
@@ -238,7 +239,8 @@ public class CustomDynamicRouter : DynamicRouter
                     url,
                     info,
                     sessionID,
-                    output
+                    output,
+                    _
                 ) => {
                     var result = _configController.ModConfig;
                     return await new ValueTask<string>(_httpResponseUtil.NoBody(result));
@@ -273,7 +275,8 @@ public class CustomStaticRouter : StaticRouter
                     url,
                     info,
                     sessionID,
-                    output
+                    output,
+                    _
                 ) => {
                     _ruafSpawnController.AdjustAllRuafSpawns(info, sessionID, output);
                     return await new ValueTask<string>(output ?? string.Empty);

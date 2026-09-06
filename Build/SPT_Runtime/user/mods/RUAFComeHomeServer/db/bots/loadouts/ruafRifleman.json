@@ -1,0 +1,26 @@
+{
+  "equipment": {
+    "FirstPrimaryWeapon": {
+      "ak74m": {
+        "id": "5ac4cd105acfc40016339859",
+        "chance": 50,
+        "slots": {
+          "mod_gas_block": [ "ak74m_gas_block" ],
+          "mod_muzzle": [ "5ac7655e5acfc40016339a19" ],
+          "mod_pistol_grip": [ "5649ade84bdc2d1b2b8b4587" ],
+          "mod_reciever": [ "ak74m_dustcovers" ],
+          "mod_magazine": [ "ak74_mags_standard" ],
+          "mod_stock": [ "5ac50c185acfc400163398d4" ],
+          "mod_mount_000": [ "dovetail_mid", "dovetail_optics" ],
+          "mod_sight_rear": [ "5ac72e475acfc400180ae6fe" ]
+        }
+      }
+    }
+  },
+  "weapons": {
+    
+  },
+  "categories": {
+
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "equipment": {},
+    "weapons": {},
+    "categories": {
+        "pkm_barrels": {
+            "pkm barrel": {
+                "id": "646371faf2404ab67905c8e9",
+                "slots": {
+                    "mod_muzzle": [
+                        "6492efb8cfcf7c89e701abf3",
+                        "6492efe46cc7e29a6f03b2a0"
+                    ]
+                }
+            }
+        }
+    }
+}
