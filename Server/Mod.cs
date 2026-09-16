@@ -20,12 +20,12 @@ public record ModMetadata : IModMetadata
     public string Name { get; init; } = "RUAF Come Home";
     public string Author { get; init; } = "TacticalToaster";
     public List<string>? Contributors { get; init; } = new() { };
-    public SemanticVersioning.Version Version { get; init; } = new(1, 2, 0);
+    public SemanticVersioning.Version Version { get; init; } = new(1, 2, 2);
     public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.5");
     public List<string>? Incompatibilities { get; init; }
     public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
     {
-        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.1.0") },
+        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.1.1") },
         { "com.wtt.commonlib", new SemanticVersioning.Range(">=3.0.0") },
         { "com.wtt.contentbackport", new SemanticVersioning.Range(">=2.0.0") },
     };
@@ -250,7 +250,7 @@ public class CustomDynamicRouter : DynamicRouter
     }
 }
 
-[Injectable]
+[Injectable(TypePriority = OnLoadOrder.Routers + 30)]
 public class CustomStaticRouter : StaticRouter
 {
     private static HttpResponseUtil _httpResponseUtil;
