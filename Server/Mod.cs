@@ -66,8 +66,7 @@ public class RUAFComeHome(
     MoreBotsServer.Services.FactionService factionService,
     MoreBotsServer.Services.LoadoutService loadoutService,
     WTTServerCommonLib.WTTServerCommonLib commonLib,
-    IReadOnlyList<SptMod> modList,
-    RUAFSpawnController ruafSpawnController
+    IReadOnlyList<SptMod> modList
 ) : IOnLoad
 {
     public async Task OnLoadAsync(CancellationToken cancellationToken)
@@ -165,10 +164,21 @@ public class RUAFComeHome(
         // Use WTT to add locales
         await commonLib.CustomLocaleService.CreateCustomLocales(assembly);
 
-        // Add RUAF to spawns
+        await Task.CompletedTask;
+    }
+}
+
+// Add to spawns after spawn managers such as ABPS have rebuilt the location spawn lists, using MoreBotsLoadOrder.AddSpawns.
+[Injectable(InjectionType = InjectionType.Singleton, TypePriority = MoreBotsServer.MoreBotsLoadOrder.AddSpawns)]
+public class RUAFComeHomeSpawns(
+    RUAFSpawnController ruafSpawnController
+) : IOnLoad
+{
+    public Task OnLoadAsync(CancellationToken cancellationToken)
+    {
         ruafSpawnController.AdjustAllRuafSpawns();
 
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
 }
 
